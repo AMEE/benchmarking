@@ -1,0 +1,25 @@
+<% content_for :head do %>
+
+  <% javascript_tag do %>
+
+    $(document).ready(function(){
+
+      tableCells$ = $('td.totals_table_cell');
+
+      tableCells$.each(function() {
+        $(this).css('width', 120);
+      });
+
+      renderLoadingGif(tableCells$);
+
+      jQuery.ajax({
+        dataType: 'script',
+        type:     'GET',
+        url:      '/summary/update'
+      });
+
+      
+    });
+
+  <% end %>
+<% end %>

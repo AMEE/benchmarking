@@ -1,0 +1,12 @@
+<% if term.drop_down? && !term.is_a?(AMEE::DataClassify::ClassifyMetadatum) %>
+  <%= term_choices_select_tag(term) %>
+<%else%>
+  <%= term_input_tag(term) %>
+  <% unless term.default_unit.nil? %>
+    <%= term_unit_select_tag(term) %>
+  <% end %>
+  <% unless term.default_per_unit.nil? %>
+    <%= "/" %>
+    <%= term_per_unit_select_tag(term) %>
+  <% end %>
+<%end%>

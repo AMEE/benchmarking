@@ -1,0 +1,85 @@
+<% content_for :head do %>
+
+  <% javascript_tag do %>
+
+    $(document).ready(function(){
+
+      $(".amee-drill, .amee-profile, .amee-metadatum").live('change',function() {
+        data = rowParamString($(this))+"&"+termParamString($(this))
+        row = $(this).closest('tr');
+        if (!hasDbRecord($(this)) || $(this).is('.amee-drill')) {
+          cells = getAllCellsInRow(row).add($("td.amee-result"));
+        } else {
+          cells = getRowOutputCells(row).add($("td.amee-result"));
+        }
+        renderLoadingGif(cells);
+        updateCalculation(data);
+      });
+
+      helpNotes$ = $("div.note").live('filter', function(){
+        return !$(this).is('base');
+      });
+
+      helpNotes$.live('click', function() {
+        $('p.note', $(this)).slideToggle();
+      }).live('mouseover', function() {
+        $(this).css('cursor','pointer');
+      },function() {
+        $(this).css('cursor','auto');
+      });
+      
+    });
+
+    function getAllCellsInRow(rowWrapper) {
+      return $("td.amee-drill, td.amee-profile, td.amee-output", rowWrapper);
+    }
+
+    function getRowOutputCells(rowWrapper) {
+      return $("td.amee-output", rowWrapper);
+    }
+
+    function hasDbRecord(object) {
+      var row = object.closest('tr');
+
+      if (typeof(row.attr('calc_db_id')) == 'undefined') {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    function rowParamString(object) {
+      var row = object.closest('tr');
+      params = {
+        row:       row.attr('id'),
+      };
+      if (typeof(row.attr('calc_db_id')) == 'undefined') {
+        params.type = row.attr('calc_type');
+      } else {
+        params.id = row.attr('calc_db_id');
+      }
+      return jQuery.param(params);
+    }
+
+    function termParamString(object) {
+      params = {
+        path:      object.attr('class').split(" ")[1].split("-")[1],
+        attribute: object.attr('class').split(" ")[2].split("-")[1],
+        data:      object.attr('value')
+      };
+      return jQuery.param(params);
+    }
+
+    function updateCalculation(string) {
+      jQuery.ajax({
+        data:     string,
+        dataType: 'script',
+        type:     'post',
+        url:      '/calculations/update'
+      });
+
+    }
+
+
+  <% end %>
+<% end %>

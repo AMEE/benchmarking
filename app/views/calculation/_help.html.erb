@@ -1,0 +1,21 @@
+<% optional = session[@prototype_calculation.label][:show_optional] %>
+<div id="help_container" style="display:none">
+  
+  <div id="help">
+    <div class="note head">
+      <h3 class="note"><%= @prototype_calculation.name %></h3>
+      <p class="note"><%= @prototype_calculation[:note] %></p>
+      <p class="note">See below for information on each methodology component...</p>
+    </div>
+    <% calculation_terms_in_table_order(@prototype_calculation,optional).each do |term| %>
+      <div class="note">
+        <h3 class="note"><%= term.name %></h3>
+        <p class="note"><%= term.note %></p>
+      </div>
+    <%end%>
+    <div class="note base">
+      <h3 class="note"><%= link_to 'See this methodology in AMEEdiscover', @prototype_calculation.discover_url %></h3>
+      <h3 class="close"><%= link_to_function 'close', "$('#help_container').fadeOut();" %></h3>
+    </div>
+  </div>
+</div>

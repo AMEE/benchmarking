@@ -1,0 +1,67 @@
+<% javascript_tag do %>
+
+  $(document).ready(function(){
+
+    $("#calculation_tabs .selected").each(function() {
+
+      // make selected tab more prominent
+
+      var currentHeight = $(this).height();
+      var newHeight = currentHeight * 1.4;
+      $(this).height(newHeight);
+
+      // scroll enough to show selected tab
+
+      var pageWidth = $(window).width();
+      var offset = $(this).offset();
+      $("div#moving_tabs").scrollLeft(offset.left-(pageWidth/2));
+    });
+
+    unselectedTabs = $("#calculation_tabs .tab").filter(function(){
+      return !$(this).hasClass('selected');
+    }).filter(function(){
+      return !$(this).hasClass('dummy');
+    });
+
+    unselectedTabs.bind('mouseenter',function() {
+      currentHeight = $(this).height();
+      newHeight = currentHeight * 1.4;
+      $(this).height(newHeight);
+    });
+
+    unselectedTabs.bind('mouseleave',function() {
+      currentHeight = $(this).height();
+      newHeight = currentHeight / 1.4;
+      $(this).height(newHeight);
+    });
+
+    $('#scroll_right').bind('mousedown',function() {
+      $('#moving_tabs').animate({scrollLeft: 2000}, 5000);
+    });
+
+    $('#scroll_right').bind('mouseup',function() {
+      $('#moving_tabs').stop();
+    });
+
+    $('#scroll_left').bind('mousedown',function() {
+      $('#moving_tabs').animate({scrollLeft: -1500}, 5000);
+    });
+
+    $('#scroll_left').bind('mouseup',function() {
+      $('#moving_tabs').stop();
+    });
+
+    $('#scroll_left, #scroll_right').bind('mousedown mouseup',function() {
+      $(this).toggleClass('scroll_tab_click');
+    });
+
+    $('#scroll_left, #scroll_right').mouseenter(function() {
+      $(this).css('cursor','pointer');
+      }, function() {
+      $(this).css('cursor','auto');
+    });
+
+
+  });
+
+<% end %>

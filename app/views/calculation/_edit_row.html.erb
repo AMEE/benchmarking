@@ -1,0 +1,24 @@
+<% row_id = "row-#{rand(1e8)}" %>
+<% ref = ( calculation.id ? "calc_db_id='#{calculation.id}'" : "calc_type='#{calculation.label}'" ) %>
+<tr id="<%= row_id%>" <%= ref %>>
+<% optional = session[calculation.label][:show_optional] %>
+<% calculation_terms_in_table_order(calculation,optional,false).each do |term|%>
+  <td class="<%= html_class_for_term(term,:edit)%>">
+    <%= render 'edit_term', :term => term %>
+  </td>
+<% end %>
+<% unless calculation.outputs.visible.empty? %>
+  <% calculation.outputs.visible.each do |term|%>
+  <td id="<%= "#{row_id}-#{term.label}" %>" class="<%= html_class_for_term(term,:show)%>"><%= show_term_tag(term,:decimal_places => 2) %></td>
+  <%end%>
+<% else %>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+<% end %>
+<% delete_symbol = image_tag "delete.png", :alt => 'Delete' %>
+<td class="delete_row"><%= link_to_remote delete_symbol,
+                                          :url => delete_path(:id => calculation.id, :row => row_id),
+                                          :before => visual_effect(:fade, row_id, :duration => 1) %></td>
+</tr>

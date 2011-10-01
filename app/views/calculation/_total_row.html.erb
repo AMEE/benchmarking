@@ -1,0 +1,13 @@
+<% optional = session[prototype_calculation.label][:show_optional] %>
+<% calculation_terms_in_table_order(prototype_calculation,optional,false).each do |term|%>
+  <td></td>
+<% end %>
+<% prototype_calculation.outputs.visible.each do |term| %>
+  <% if calculations.respond_to?(term.label) %>
+    <% result = calculations.send(term.label).sum rescue nil %>
+    <td class="amee-result <%= "calc-#{term.label}" %>"><%= show_term_tag(result,:decimal_places => 2) %></td>
+  <% else %>
+    <td class="amee-result <%= "calc-#{term.label}" %>"><%= "0.0" %></td>
+  <% end %>
+<% end %>
+<td></td>

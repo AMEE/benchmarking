@@ -1,0 +1,30 @@
+<div id="header">
+  <div id="header_tabs">
+    <% if false %>
+    <% if logged_in? %>
+      <% if current_user.is_admin? %>
+        <div class="tab">
+          <%= link_to 'admin', users_path %>
+        </div>
+      <% end %>
+      <div class="tab">
+        <%= link_to "calculate", summary_path %>
+      </div>
+      <div class="tab">
+        <%= link_to "help", help_path %>
+      </div>
+      <div class="tab">
+        <%= link_to 'settings', edit_user_path(current_user.id) %>
+      </div>
+      <div class="tab">
+        <%= link_to 'logout', user_session_path(current_user_session), :method => 'delete' %>
+      </div>
+    <% else %>
+      <div class="tab">
+        <%= link_to 'sign in', new_user_session_path %>
+      </div>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+<div id="contentarea">

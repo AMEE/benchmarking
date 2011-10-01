@@ -1,0 +1,12 @@
+  <div class="clear"></div>
+</div>
+<% if @prototype_calculations %>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <div id="calculation_tabs">
+    <%= render 'calculation/tabs', :prototype_calculations => @prototype_calculations, :prototype_calculation => @prototype_calculation %>
+  </div>
+<% end %>

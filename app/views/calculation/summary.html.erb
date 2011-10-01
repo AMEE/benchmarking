@@ -1,0 +1,39 @@
+<%= render :partial => 'totals_scripts' %>
+<span class="ajaxloader" style="display:none;"><%= image_tag 'loading.gif' %></span>
+<div id="totals_page" class="content_pane">
+  <div class="links">
+    <div class="link">
+      <%= link_to 'Export to PDF', "/report.pdf" %><%= image_tag "pdf.png" %>
+    </div>
+    <% if false %>
+      <div class="link">
+        <%= 'Export to XLS' %><%= image_tag "xls.png" %>
+      </div>
+      <div class="link">
+        <%= 'Export to CSV' %><%= image_tag "csv.png" %>
+      </div>
+    <% end %>
+  </div>
+  <table id="totals_table">
+    <tr>
+      <% @headers.each do |header| %>
+        <th><%= header %></th>
+      <% end %>
+    </tr>
+    <% @table.each do |row| %>
+      <tr>
+        <td><%= row.first.name %></td>
+        <% row[1,row.size-1].each do |column| %>
+          <td class="totals_table_cell"></td>
+        <% end %>
+      </tr>
+    <% end %>
+    <tr class="total">
+      <td></td>
+      <% @prototype_outputs.each do |total| %>
+        <td class="totals_table_cell"></td>
+      <% end %>
+    </tr>
+  </table>
+  <div id="chart_container"></div>
+</div>

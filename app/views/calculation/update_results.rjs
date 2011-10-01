@@ -1,0 +1,4 @@
+page.replace_html 'totals', :partial => 'total_row', :locals => { :calculations => @calculations, :prototype_calculation => @prototype_calculation }
+@calculation.outputs.visible.each do |term|
+  page.replace_html "#{@row_id}-#{term.label}", show_term_tag(term,:decimal_places => 2)
+end

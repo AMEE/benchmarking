@@ -1,0 +1,23 @@
+<div id="scroll_left" class="scroll_tab">
+  <
+</div>
+<div id="moving_tabs">
+  <div class="tab dummy">
+    <
+  </div>
+  <div class="tab<%= ' selected' if @title == 'Emissions summary' %>" id="summary_tab">
+    <%= link_to 'Summary', summary_path %>
+  </div>
+  <% prototype_calculations.each do |label,calc| %>
+    <div class="tab<%= ' selected' if prototype_calculation && prototype_calculation.label == label %>" id="<%= "#{label}_tab" %>">
+      <%= link_to calc.name, calculation_path(:type => label)  %>
+    </div>
+  <% end %>
+  <div class="tab dummy">
+    >
+  </div>
+</div>
+<div id="scroll_right" class="scroll_tab">
+  >
+</div>
+

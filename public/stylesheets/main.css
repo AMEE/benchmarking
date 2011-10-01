@@ -1,0 +1,729 @@
+/* WARNING: THIS CSS FILE EXISTS IN THREE LOCATIONS: MyAMEE, explorer AND THE
+   AMEE WEBSITE. IF YOU UPDATE THIS FILE, YOU MUST UPDATE ALL THREE LOCATIONS
+   TO ENSURE THE THREE SITE STYLES REMAIN CONSITENT. MAKE YOUR SITE-SPECIFIC
+   CHANGES IN THE OTHER, LOCALE SITE CSS FILE. */
+
+/* DISPLAY PRODUCT NAME AS "explorer" EVERYWHERE */
+
+
+span.explorer {
+    font-style: italic;
+}
+
+/* SITE BODY STYLES */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F8F8F8 ;
+    font-family: Arial, sans-serif;
+    overflow: auto;
+}
+
+/* SITE HEADER STYLES */
+
+#header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    background: #F8F8F8;
+    height: 0px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 160%;
+    color: #0B7883;
+    text-shadow: 2px 2px 2px LightGray;
+    font-weight: bold;
+    z-index: 3;
+}
+
+a {
+  text-decoration: none;
+}
+
+#header_tabs {
+  position: absolute;
+  top: 0px;
+  vertical-align: middle;
+  font-size: 130%;
+  font-weight: normal;
+  right: 10px;
+}
+
+#logo {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1;
+}
+
+span#screenshot {
+    position: absolute;
+    top: 100px;
+    right: 2%;
+}
+
+#help_container {
+  float:right;
+  width: 280px;
+  position: absolute;
+  right: 20px;
+  top: 25px;
+  height: 90%;
+  z-index: 1;
+  background: transparent;
+  overflow-y: auto;
+}
+
+#help {
+    position: relative;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    top: 0px;
+    padding-right: 0px;
+}
+
+div.note {
+    background: White;
+    background-image: url( '../images/cell_fill.png' );
+    background-repeat: repeat-x;
+    background-position: top;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottomp-right-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    margin: 10px;
+    border-top: 3px solid White;
+    border-bottom: 3px solid DarkGray;
+    -moz-box-shadow: -2px 5px 10px DarkGray;
+    -webkit-box-shadow: -2px 5px 10px DarkGray;
+    box-shadow: -2px 5px 10px DarkGray;
+}
+
+div.note h3.note, p {
+    text-align: left;
+    position: relative;
+    margin-left: 20px;
+    width: 90%;
+}
+
+div.note p {
+    display: none;
+}
+
+div.head, div.base {
+    text-shadow: 2px 2px 2px White;
+    background: #F0F0F0;
+}
+
+div.note h3.close {
+    position: relative;
+    text-align: right;
+    margin-right: 40px;
+    width: 90%;
+}
+
+#sign_up, #sign_in {
+  position: relative;
+  top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  padding: 30px;
+}
+
+#sign_up {
+  width: 600px;
+}
+
+#sign_in {
+  width: 540px;
+}
+
+
+
+.form {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+  padding-bottom: 60px;
+  width: auto;
+  clear: right;
+}
+
+.form table {
+    float: none;
+    width: auto;
+}
+
+.form input[type='submit'] {
+    position: relative;
+    float: right;
+    background: #E0E0E0;
+    padding: 7px 10px;
+    font-size: 13px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    white-space: nowrap;
+    color: Black;
+    text-shadow: 2px 2px 2px White;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-right: 0px;
+}
+
+.form input[type='submit']:hover {
+    background: #c8d828;
+}
+
+#admin {
+  position: relative;
+  top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+  padding-bottom: 60px;
+  width: 600px;
+  overflow: auto;
+}
+
+#admin #user_table {
+  padding: 30px;
+  position: relative;
+
+}
+
+#admin #user_table table {
+    position: relative;
+    clear: both;
+}
+
+#user_table table tr td {
+    text-align: left;
+}
+
+#user_table table a {
+    color: DarkGray;
+}
+
+#user_table table a:hover {
+    color: #3f9d9b;
+}
+
+#add_user {
+    position: relative;
+    float: right;
+    background: #E0E0E0;
+    padding: 7px 10px;
+    font-size: 13px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    white-space: nowrap;
+    color: Black;
+    text-shadow: 2px 2px 2px White;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-right: 0px;
+}
+
+#add_user:hover {
+    background: #c8d828;
+}
+
+
+#scroll_left {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    -moz-box-shadow: 2px 1px 5px DarkGray;
+    -webkit-box-shadow: 2px 1px 5px DarkGray;
+    box-shadow: 2px 1px 5px DarkGray;
+}
+
+#scroll_right {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    -moz-box-shadow: -2px 1px 5px DarkGray;
+    -webkit-box-shadow: -2px 1px 5px DarkGray;
+    box-shadow: -2px 1px 5px DarkGray;
+}
+
+div#calculation_tabs {
+   position: fixed;
+   width: 100%;
+   bottom: 0px;
+   white-space: nowrap;
+   background: transparent;
+   z-index: 2;
+   display: inline-block;
+   font-size: 13px;
+   white-space: nowrap;
+   overflow-x: hidden;
+   text-align: bottom;
+}
+
+#moving_tabs {
+   position: relative;
+   margin-bottom: 0;
+   padding: 0;
+   bottom: 0;
+   left: 0px;
+   overflow-x: hidden;
+   vertical-align: bottom;
+}
+
+.tab {
+  display: inline-block;
+  background: #C8C8C8;
+  padding: 9px 15px;
+  font-size: 13px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  white-space: nowrap;
+  vertical-align: bottom;
+  border-top: 1px solid LightGray;
+  border-right: 1px solid DarkGray;
+}
+
+#header_tabs .tab {
+  display: inline-block;
+  background: #C8C8C8;
+  padding: 7px 13px;
+  font-size: 13px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-top-right-radius: 0px;
+  white-space: nowrap;
+  vertical-align: top;
+  border-bottom: 1px solid DarkGray;
+  border-right: 1px solid DarkGray;
+  -moz-box-shadow: 0px 3px 7px DarkGray;
+  -webkit-box-shadow: 0px 3px 7px DarkGray;
+  box-shadow: 0px 3px 7px DarkGray;
+}
+
+.scroll_tab {
+  display: inline-block;
+  background: #3f9d9b;
+  padding: 9px 15px;
+  font-size: 13px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  vertical-align: bottom;
+   border-top: 1px solid White;
+   border-right: 1px solid DarkGray;
+   border-left: 1px solid White;
+   z-index: 3;
+   color: White;
+}
+
+.scroll_tab_click {
+   background: #c8d828;
+   color: Black;
+   text-shadow: 2px 2px 2px White;
+}
+
+#calculation_tabs .tab a {
+  color: Black;
+  text-shadow: 2px 2px 2px White;
+  text-decoration: none;
+}
+
+#calculation_tabs .selected a {
+  color: White;
+  text-shadow: none;
+}
+
+#calculation_tabs div.dummy, #calculation_tabs div.dummy:hover {
+    background: transparent;
+    border: none;
+    color: transparent;
+    -moz-box-shadow: none;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+}
+
+#calculation_tabs .tab:hover {
+   background: #c8d828;
+   border-top: 1px solid White;
+   -moz-box-shadow: 1px 1px 5px DarkGray;
+   -webkit-box-shadow: 1px 1px 5px DarkGray;
+   box-shadow: 1px 1px 5px DarkGray;
+}
+
+#calculation_tabs .selected, #calculation_tabs .selected:hover {
+  color: White;
+  background: #3f9d9b;
+  font-weight: bold;
+  border-top: 1px solid White;
+  -moz-box-shadow: 1px 1px 5px DarkGray;
+   -webkit-box-shadow: 1px 1px 5px DarkGray;
+   box-shadow: 1px 1px 5px DarkGray;
+}
+
+.dummy a {
+    color: transparent;
+}
+
+
+.dummy a:hover {
+    color: transparent;
+}
+
+#header_tabs .tab a {
+  color: Black;
+  text-shadow: 1px 1px 1px White;
+  text-decoration: none;
+}
+
+#header_tabs .tab:hover {
+   background: #c8d828;
+   -moz-box-shadow: 1px -2px 5px DarkGray;
+   -webkit-box-shadow: 1px -2px 5px DarkGray;
+   box-shadow: 1px -2px 5px DarkGray;
+   border-top: 1px solid White;
+   text-shadow: none;
+}
+
+#user {
+    width: 700px;
+    top: 100px;
+    position: relative;
+    padding: 30px;
+}
+
+h2.instructions {
+     position: relative;
+     left: 0px;
+     text-align: left;
+}
+
+h3.instructions {
+     position: relative;
+     left: 0px;
+     text-align: left;
+}
+
+/* MAIN CONTENT STYLES */
+
+h1 {
+    color: #0B7883;
+    font-size: 2.8em;
+    margin-top: 0px;
+}
+
+h1 a {
+    color: #0B7883;
+}
+
+h2 {
+    color: #0B7883;
+    font-size: 150%;
+    margin-top: 20px;
+}
+
+h3 {
+    color: #0B7883;
+    font-size:100%;
+}
+
+h4 {
+    font-weight: normal;
+}
+
+a img {
+    border-width: 0px;
+}
+
+a {
+    color: black;
+}
+
+img {
+    vertical-align: middle;
+}
+
+div#contentarea {
+    font-size: 0.8em;
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1620px;
+    position: relative;
+    top: 25px;
+}
+
+.content_pane {
+    background: White;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid #E0E0E0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-box-shadow: 1px 1px 15px #E0E0E0;
+    -webkit-box-shadow: 1px 1px 15px #E0E0E0;
+    box-shadow: 1px 1px 15px #E0E0E0;
+}
+
+#benchmark-wrapper {
+    position: relative;
+    top: 5px;
+    padding: 30px;
+    height: auto;
+    margin-bottom: 40px;
+    margin-top: 15px;
+}
+
+#benchmark-form-wrapper {
+    position: relative;
+    top: 0px;
+    padding: 30px;
+    height: auto;
+}
+
+#benchmark-form-wrapper div {
+    position: relative;
+}
+
+#benchmark-table-wrapper {
+    position: relative;
+    height: 380px;
+    width: auto;
+    overflow-x: hidden;
+}
+
+table#benchmark {
+    position: relative;
+    width: auto;
+    height: auto;
+    max-height: 380px;
+    table-layout: fixed;
+}
+table#benchmark thead {
+    position: absolute;
+    top: 35px;
+    left: 0px;
+    width: auto;
+    height: 45px;
+    -moz-box-shadow: 0px 10px 10px DarkGray;
+    -webkit-box-shadow: 0px 10px 10px DarkGray;
+    box-shadow: 0px 10px 10px DarkGray;
+    z-index: 1;
+}
+
+table#benchmark tbody {
+    position: absolute;
+    top: 90px;
+    left: 0px;
+    height: auto;
+    max-height: 285px;
+    width: auto;
+    overflow-y: auto;
+    display: block;
+}
+
+table#benchmark tr td {
+    width: auto;
+    font-size: 120%;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+    background: White;
+    color: #525252;
+    vertical-align: middle;
+    border-bottom: 2px solid LightGray;
+}
+
+table#benchmark tr td.text {
+    text-align: left;
+}
+
+table#benchmark tr td.number {
+    text-align: right;
+}
+
+
+table#benchmark tr th {
+    height: auto;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+    
+}
+
+table#benchmark tr td.company, table#benchmark tr th.company {
+    width: 300px;
+    white-space: normal;
+    text-align: left;
+}
+
+table#benchmark tr td.sector, table#benchmark tr th.sector {
+    width: 300px;
+    max-width: 200px;
+    white-space: normal;
+    text-align: left;
+}
+
+table#benchmark tr td.country, table#benchmark tr th.country {
+    width: 150px;
+    white-space: normal;
+    text-align: left;
+}
+
+table#benchmark tr td.scope-1-emissions, table#benchmark tr th.scope-1-emissions {
+    width: 150px;
+    white-space: normal;
+    text-align: right;
+}
+
+table#benchmark tr td.scope-2-emissions, table#benchmark tr th.scope-2-emissions {
+    width: 150px;
+    white-space: normal;
+    text-align: right;
+}
+
+table#benchmark tr td.scope-1-energy, table#benchmark tr th.scope-1-energy {
+    width: 150px;
+    white-space: normal;
+    text-align: right;
+}
+
+table#benchmark tr td.scope-2-energy, table#benchmark tr th.scope-2-energy {
+    width: 150px;
+    white-space: normal;
+    text-align: right;
+}
+
+table#benchmark tr td.metric, table#benchmark tr th.metric {
+    width: 100px;
+    white-space: normal;
+    text-align: center;
+}
+
+table#benchmark tr td.intensity, table#benchmark tr th.intensity {
+    width: 120px;
+    white-space: normal;
+    text-align: right;
+}
+
+table#benchmark tr th.dummy {
+}
+
+
+
+table {
+    font-family:"Trebuchet MS", Helvetica, sans-serif;
+    background: White;
+    position: relative;
+    border-spacing: 0px;
+}
+
+td {
+    text-align: left;
+    padding: 3px;
+    position: relative;
+    background: White;
+    color: #525252;
+    vertical-align: middle;
+    padding-right: 5px;
+    width: auto;
+}
+
+td select, input {
+    border: 1px solid LightGray;
+    background: White;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    color: Darkgray;
+    vertical-align: middle;
+    text-align: centre;
+    padding-right: 5px;
+    font-size: 100%;
+    width: auto;
+    display: inherit;
+}
+
+td select:focus, input:focus {
+    background: inherit;
+    color: DarkGray;
+    font-weight: bolder;
+}
+
+td select:hover, input:hover {
+    color:DarkGray;
+}
+
+th {
+    text-align: centre;
+    background: Gainsboro;
+    text-shadow: 2px 2px 2px White;
+    
+}
+
+div.clear {
+    clear: both;
+    line-height: 0;
+    height: 0;
+}
+
+

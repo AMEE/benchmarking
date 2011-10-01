@@ -1,0 +1,23 @@
+production:
+  server: live.amee.com
+  username: 
+  password: 
+  unprivileged_username: 
+  unprivileged_password: 
+  cache: rails
+
+development:
+  server: platform-science.amee.com
+  username: 
+  password: 
+  unprivileged_username: 
+  unprivileged_password: 
+  cache: rails
+  
+test:
+  server: platform-science.amee.com
+  username: 
+  password: 
+  unprivileged_username: 
+  unprivileged_password: 
+

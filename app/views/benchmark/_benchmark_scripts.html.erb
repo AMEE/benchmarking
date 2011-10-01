@@ -1,0 +1,63 @@
+<% content_for :head do %>
+
+<script type="text/javascript" src="/javascripts/jquery.tablesorter.js"></script>
+
+  <% javascript_tag do %>
+
+    $(document).ready(function(){
+
+      
+      $("table#benchmark").tablesorter();
+
+      filters$ = $("table#filter td select")
+      
+      filters$.each(function(){
+        alert($(this));
+      });
+      
+      filters$.live('change', function(){
+
+        jQuery.ajax({
+          data:     "sector=Pharmaceuticals",
+          dataType: 'script',
+          type:     'get',
+          url:      '/benchmark/show',
+          success:  function(data) {
+            $('body').replaceWith(data);
+            managePageStyle();
+          }
+        });
+      });
+
+      managePageStyle();
+
+    });
+
+    function managePageStyle() {
+      tableRowBackgroundColor($("table#benchmark tbody tr:odd"), '#f0f0ff');
+      tableRowBackgroundColor($("table#benchmark tbody tr:even"), 'White');
+      tableHeaderWidth();
+    }
+
+    function tableRowBackgroundColor(rows,color) {
+      $(rows).each(function() {
+        cells$ = $(this).children("td");
+        cells$.each(function(){
+          $(this).css('background',color);
+        });
+      });
+    }
+
+    function tableHeaderWidth() {
+      tableBody$ = $("table#benchmark > tbody");
+      dummyCell$ = $("table#benchmark th.dummy");
+      if (tableBody$.height() == 285) {
+        dummyCell$.width("28px");
+      } else {
+        dummyCell$.width("0px");
+      }
+
+    }
+
+  <% end %>
+<% end %>

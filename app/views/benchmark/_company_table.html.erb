@@ -1,0 +1,40 @@
+<table id="filter">
+  <tr>
+    <td>Filter by...</td>
+    <td>Sector: <%= select_tag 'sector', options_for_select(@sector_list, @sector) %></td>
+    <td>Country: <%= select_tag 'country', options_for_select(@country_list, @country) %></td>
+    <td>Financial metric: <%= select_tag 'financialMetric', options_for_select(@financial_metric_list, @financial_metric) %></td>
+  </tr>
+</table>
+<table id="benchmark" class="tablesorter">
+  <thead>
+    <tr>
+      <th class="company">Company</th>
+      <th class="country">Country</th>
+      <th class="sector">Sector</th>
+      <th class="scope-1-emissions">Scope 1 (t)</th>
+      <th class="scope-2-emissions">Scope 2 (t)</th>
+      <th class="scope-1-energy">Scope 1 (MWh)</th>
+      <th class="scope-2-energy">Scope 2 (MWh)</th>
+      <th class="metric">Financial metric</th>
+      <th class="intensity">t CO2e per $</th>
+      <th class="dummy"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @items.each do |item| %>
+    <tr>
+      <td class="text company"><%= item['company']['value'] %></td>
+      <td class="text country"><%= item['country']['value'] %></td>
+      <td class="text sector"><%= item['sector']['value'] %></td>
+      <td class="number scope-1-emissions"><%= item['massScopeOneCO2e']['value'] %></td>
+      <td class="number scope-2-emissions"><%= item['massScopeTwoCO2e']['value'] %></td>
+      <td class="number scope-1-energy"><%= item['energyScopeOne']['value'] %></td>
+      <td class="number scope-2-energy"><%= item['energyScopeTwoTotal']['value'] %></td>
+      <td class="text metric"><%= item['financialMetric']['value'] %></td>
+      <td class="number intensity"><%= item['massCO2ePerUSDFinancialMetric']['value'] %></td>
+      <td class="dummy"></td>
+    </tr>
+  <%end%>
+  </tbody>
+</table>
