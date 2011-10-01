@@ -1,9 +1,15 @@
+<span class="ajaxloader" style="display:none;"><%= image_tag 'loading_small.gif' %></span>
 <table id="filter">
   <tr>
-    <td>Filter by...</td>
-    <td>Sector: <%= select_tag 'sector', options_for_select(@sector_list, @sector) %></td>
-    <td>Country: <%= select_tag 'country', options_for_select(@country_list, @country) %></td>
-    <td>Financial metric: <%= select_tag 'financialMetric', options_for_select(@financial_metric_list, @financial_metric) %></td>
+    <td>Filter by:</td>
+    <td>Sector: <%= select_tag 'sector', options_for_select(@sector_list.unshift("All"), session[:settings][:sector] || "All") %></td>
+    <td>Country: <%= select_tag 'country', options_for_select(@country_list.unshift("All"), session[:settings][:country] || "All") %></td>
+    <td>Financial metric: <%= select_tag 'financialMetric', options_for_select(@financial_metric_list.unshift("All"), session[:settings][:financialMetric] || "All") %></td>
+    <% if @normalized %>
+      <td style="color: #ff7a8d; white-space: normal; text-align: right;width:500px;"><%= "These data are normalized to company #{session[:settings][:financialMetric]}" %></td>
+    <% else %>
+      <td style="color: #79afff; white-space: normal; text-align: right;width:500px;"><%= "These data represent true, reported values" %></td>
+    <% end %>
   </tr>
 </table>
 <table id="benchmark" class="tablesorter">
@@ -23,7 +29,7 @@
   </thead>
   <tbody>
   <% @items.each do |item| %>
-    <tr>
+    <tr id="<%= item['company']['value'].downcase.gsub(" ","-") %>">
       <td class="text company"><%= item['company']['value'] %></td>
       <td class="text country"><%= item['country']['value'] %></td>
       <td class="text sector"><%= item['sector']['value'] %></td>

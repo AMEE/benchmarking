@@ -6,20 +6,111 @@ class BenchmarkController < ApplicationController
   before_filter :login_required
 
   def show
-    params.delete(:controller)
-    params.delete(:action)
-    params.delete(:_)
-    @sector = params['sector']
-    @country = params['country']
-    @financial_metric = params['financialMetric']
-    @sector_list = SECTOR_LIST
-    @country_list = COUNTRY_LIST
-    @financial_metric_list = FINANCIAL_METRIC_LIST
-    if @sector || @country || @financial_metric
-      @items = get_company_data(params)
+    generate
+  end
+
+  def update
+    generate
+  end
+
+  def generate
+    @normalized = false
+    initialize_lists
+    initialize_settings(params)
+    initialize_data
+    unless session[:settings][:financial_measure].blank?
+      @normalized = true
+      normalize_data
+      append_average_sector_representation
+      if !session[:settings][:massScopeOneCO2e].blank? || !session[:settings][:massScopeTwoCO2e].blank? ||
+          !session[:settings][:energyScopeOne].blank? || !session[:settings][:energyScopeTwoTotal].blank?
+        append_custom_company_representation
+      end
+      sort_data
+    end
+  end
+
+  def normalize_data
+    @items.each do |item|
+      ratio = session[:settings][:financial_measure].to_f / item['totalFinancialMetricUSD']['value'].to_f
+      normalized_attributes.each do |attr|
+        item[attr]['value'] = (item[attr]['value'].to_f * ratio).round(2)
+      end
+    end
+  end
+
+  def sort_data
+    @items.sort! do |item, next_item|
+      (item['massScopeOneCO2e']['value'].to_f + item['massScopeTwoCO2e']['value'].to_f) <=> (next_item['massScopeOneCO2e']['value'].to_f + next_item['massScopeTwoCO2e']['value'].to_f)
+    end
+  end
+
+  def append_custom_company_representation
+    hash = {}
+    hash["company"] = { "value" => "My Company" }
+    hash["massScopeTwoCO2e"] = { "unit" => "t", "value" => session[:settings][:massScopeTwoCO2e] }
+    hash["country"] = { "value" => ""}
+    hash["financialMetric"] = { "value" => session[:settings][:financialMetric] }
+    hash["massScopeOneCO2e"] = { "unit" => "t", "value" => session[:settings][:massScopeOneCO2e].to_f.round(2) }
+    hash["energyScopeTwoTotal"] = { "unit" => "MWh", "value" => session[:settings][:energyScopeTwoTotal].to_f.round(2) }
+    hash["energyScopeOne"] = { "unit" => "MWh", "value" => session[:settings][:energyScopeOne].to_f.round(2) }
+    hash["totalFinancialMetricUSD"] = { "value" => session[:settings][:financial_measure].to_f.round(2) }
+    hash["massCO2ePerUSDFinancialMetric"] = { "unit" => "kg", "value"=> ((session[:settings][:massScopeOneCO2e].to_f+session[:settings][:massScopeTwoCO2e].to_f)/session[:settings][:financial_measure].to_f).round(2) }
+    hash["sector"] = {"value"=> session[:settings][:sector] }
+    @items << hash
+  end
+
+  def append_average_sector_representation
+    hash = {}
+    hash["company"] = { "value" => "Sector average" }
+    hash["massScopeTwoCO2e"] = { "unit" => "t", "value" => (@items.inject(0.0) { |sum, item| sum + item['massScopeTwoCO2e']['value'].to_f }/@items.size.to_f).round(2) }
+    hash["country"] = { "value" => ""}
+    hash["financialMetric"] = { "value" => session[:settings][:financialMetric] }
+    hash["massScopeOneCO2e"] = { "unit" => "t", "value" => (@items.inject(0.0) { |sum, item| sum + item['massScopeOneCO2e']['value'].to_f }/@items.size.to_f).round(2) }
+    hash["energyScopeTwoTotal"] = { "unit" => "MWh", "value" => (@items.inject(0.0) { |sum, item| sum + item['energyScopeTwoTotal']['value'].to_f }/@items.size.to_f).round(2) }
+    hash["energyScopeOne"] = { "unit" => "MWh", "value" => (@items.inject(0.0) { |sum, item| sum + item['energyScopeOne']['value'].to_f }/@items.size.to_f).round(2) }
+    hash["totalFinancialMetricUSD"] = { "value" => (@items.inject(0.0) { |sum, item| sum + item['totalFinancialMetricUSD']['value'].to_f }/@items.size.to_f).round(2) }
+    hash["massCO2ePerUSDFinancialMetric"] = { "unit" => "kg", "value"=> "" }
+    hash["sector"] = {"value"=> session[:settings][:sector] }
+    @items << hash
+  end
+
+  def update
+    initialize_lists
+    initialize_settings(params)
+    initialize_data
+  end
+
+  def initialize_settings(params)
+    session[:settings] ||= {}
+    session[:settings][:country] = params['country'] == 'All' ? nil : params['country']
+    session[:settings][:sector]  = params['sector'] == 'All' ? nil : params['sector']
+    session[:settings][:financialMetric] = params['financialMetric'] == 'All' ? nil : params['financialMetric']
+    session[:settings][:financial_measure]  = params['financial_measure']
+    session[:settings][:massScopeOneCO2e]  = params['scope1_emissions']
+    session[:settings][:massScopeTwoCO2e]  = params['scope2_emissions']
+    session[:settings][:energyScopeOne]  = params['scope1_energy']
+    session[:settings][:energyScopeTwoTotal]  = params['scope2_energy']
+  end
+
+  def initialize_data
+    if valid_selections?
+      @items = get_company_data(options_for_company_data_get)
     else
       @items = Rails.cache.read('all_company_data')
     end
+  end
+
+  def options_for_company_data_get
+    hash = {}
+    hash[:sector] = session[:settings][:sector]
+    hash[:country] = session[:settings][:country]
+    hash[:financialMetric] = session[:settings][:financialMetric]
+    return hash
+  end
+
+  def valid_selections?
+    session[:settings][:country] || session[:settings][:sector] || session[:settings][:financialMetric]
   end
 
   def get_company_data(options={})
@@ -38,7 +129,6 @@ class BenchmarkController < ApplicationController
   def get_xml(options)
     http_options = auth_credentials.merge(:accept => "application/xml")
     url = "https://platform-api-science.amee.com/3/categories/CDP_emissions_and_financial_metrics/items;full#{querify(options) if options}"
-    puts url
     xml = Ihsh.get(url, http_options)
     return xml
   end
@@ -68,10 +158,26 @@ class BenchmarkController < ApplicationController
 
   def querify(hash)
     string = "?" + hash.map do |key,value|
+      next if value.nil? || value.blank?
       value = "%22#{CGI::escape(value)}%22" if value.is_a? String
       "#{key.to_s}=#{value}"
-    end.join("&")
+    end.compact.join("&")
     return string
+  end
+
+  def initialize_lists
+    @sector_list = SECTOR_LIST
+    @country_list = COUNTRY_LIST
+    @financial_metric_list = FINANCIAL_METRIC_LIST
+  end
+
+  def normalized_attributes
+    [ 'massScopeTwoCO2e', 'massScopeOneCO2e', 'energyScopeTwoTotal', 'energyScopeOne' ]
+  end
+
+  def auth_credentials
+    { :username => $AMEE_CONFIG['username'],
+      :password => $AMEE_CONFIG['password'] }
   end
 
   IGNORED_ATTRIBUTES = [ "energyScopeTwoCooling",
@@ -80,11 +186,6 @@ class BenchmarkController < ApplicationController
                          "energyScopeTwoHeat",
                          "reportingPeriodEnd",
                          "energyScopeTwoSteam" ]
-
-  def auth_credentials
-    { :username => $AMEE_CONFIG['username'],
-      :password => $AMEE_CONFIG['password'] }
-  end
 
   COUNTRY_LIST = [ "Argentina",
                    "Australia",

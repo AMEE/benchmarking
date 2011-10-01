@@ -5,7 +5,6 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <%= javascript_include_tag :defaults %>
-    <%= render :partial => "calculation/tab_scripts" %>
     <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
     <%= stylesheet_link_tag 'main' %>
     <%= yield :head %>

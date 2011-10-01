@@ -2,41 +2,41 @@
 
 <div id="benchmark-form-wrapper" class="content_pane" >
   <div>
-    <% form_tag(show_benchmark_path, :method => 'get') do %>
+    <% form_tag(benchmark_path, :method => 'get') do %>
     <table>
       <tr class="benchmark-select">
         <td>Choose a sector</td>
-        <td><%= select_tag 'sector', options_for_select(@sector_list, @sector) %></td>
+        <td><%= select_tag 'sector', options_for_select(@sector_list, session[:settings][:sector]) %></td>
       </tr>
       <% if false %>
         <tr class="benchmark-select">
           <td>Choose a country</td>
-          <td><%= select_tag 'country', options_for_select(@country_list, @country) %></td>
+          <td><%= select_tag 'country', options_for_select(@country_list, session[:settings][:country]) %></td>
         </tr>
       <% end %>
       <tr class="benchmark-select">
         <td>Choose a financial metric</td>
-        <td><%= select_tag 'financialMetric', options_for_select(@financial_metric_list, @financial_metric) %></td>
+        <td><%= select_tag 'financialMetric', options_for_select(@financial_metric_list, session[:settings][:financialMetric]) %></td>
       </tr>
       <tr class="benchmark-text">
         <td>Set a financial benchmark</td>
-        <td><%= text_field_tag 'financial_measure', @financial_measure %> USD ($)</td>
+        <td><%= text_field_tag 'financial_measure', session[:settings][:financial_measure] %> USD ($)</td>
       </tr>
       <tr class="benchmark-text">
         <td>Set scope 1 emissions</td>
-        <td><%= text_field_tag 'scope1_emissions', @scope1_emissions %> Metric tonnes (t</td>
+        <td><%= text_field_tag 'scope1_emissions', session[:settings][:massScopeOneCO2e] %> Metric tonnes (t</td>
       </tr>
       <tr class="benchmark-text">
         <td>Set scope 2 emissions</td>
-        <td><%= text_field_tag 'scope2_emissions', @scope2_emissions %> Metric tonnes (t</td>
+        <td><%= text_field_tag 'scope2_emissions', session[:settings][:massScopeTwoCO2e] %> Metric tonnes (t</td>
       </tr>
       <tr class="benchmark-text">
         <td>Set scope 1 energy consumption</td>
-        <td><%= text_field_tag 'scope1_energy', @scope1_energy %> Megawatt hours (MWh)</td>
+        <td><%= text_field_tag 'scope1_energy', session[:settings][:energyScopeOne] %> Megawatt hours (MWh)</td>
       </tr>
       <tr class="benchmark-text">
         <td>Set scope 2 energy consumption</td>
-        <td><%= text_field_tag 'scope2_energy', @scope2_energy %> Megawatt hours (MWh)</td>
+        <td><%= text_field_tag 'scope2_energy', session[:settings][:energyScopeTwoTotal] %> Megawatt hours (MWh)</td>
       </tr>
     </table>
     <div>

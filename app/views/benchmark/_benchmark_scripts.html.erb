@@ -11,21 +11,17 @@
 
       filters$ = $("table#filter td select")
       
-      filters$.each(function(){
-        alert($(this));
-      });
-      
       filters$.live('change', function(){
+        
+        cells$ = $("table#benchmark tbody tr td");
+        renderLoadingGif(cells$);
+        query = encodeURI($(this).attr('id') + "=" + $(this).attr('value').replace(/&/, "%26"));
 
         jQuery.ajax({
-          data:     "sector=Pharmaceuticals",
+          data:     query,
           dataType: 'script',
-          type:     'get',
-          url:      '/benchmark/show',
-          success:  function(data) {
-            $('body').replaceWith(data);
-            managePageStyle();
-          }
+          type:     'post',
+          url:      '/benchmark/update'
         });
       });
 
@@ -36,7 +32,30 @@
     function managePageStyle() {
       tableRowBackgroundColor($("table#benchmark tbody tr:odd"), '#f0f0ff');
       tableRowBackgroundColor($("table#benchmark tbody tr:even"), 'White');
+      tableRowBackgroundColor($("table#benchmark tbody tr#my-company"), 'Green');
+
+      $("table#benchmark tbody tr#my-company").children("td").each(function(){
+          $(this).css('background',"#e8ffe8");
+      });
+
+      $("table#benchmark tbody tr#sector-average").children("td").each(function(){
+          $(this).css('background',"#5e5e5e").css('color', 'White');
+      });
+
       tableHeaderWidth();
+
+      scrollToMyCompany();
+    }
+
+    function scrollToMyCompany() {
+      container = $("table#benchmark tbody");
+      height = container.height();
+      contentHeight = container.attr('scrollHeight');
+      if (contentHeight > height) {
+        row = $("table#benchmark tbody tr#my-company");
+        position = row.position();
+        container.animate({scrollTop: position.top-(height/2)}, 2000);
+      }
     }
 
     function tableRowBackgroundColor(rows,color) {

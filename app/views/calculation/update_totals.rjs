@@ -1,4 +1,0 @@
-page << "$('#totals_table').html('#{escape_javascript( render(:partial => 'totals_table'))}');"
-page << "$('#chart_container').html('#{escape_javascript( render(:partial => 'totals_chart'))}');"
-page << "$('#chart_container img').slideDown(1500)"
-

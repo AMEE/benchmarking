@@ -527,6 +527,7 @@ div#contentarea {
     position: relative;
     top: 5px;
     padding: 30px;
+    padding-top: 20px;
     height: auto;
     margin-bottom: 40px;
     margin-top: 15px;
@@ -537,6 +538,7 @@ div#contentarea {
     top: 0px;
     padding: 30px;
     height: auto;
+    width: 500px;
 }
 
 #benchmark-form-wrapper div {
@@ -609,7 +611,6 @@ table#benchmark tr th {
     padding-left: 10px;
     padding-right: 10px;
     vertical-align: middle;
-    
 }
 
 table#benchmark tr td.company, table#benchmark tr th.company {
@@ -667,7 +668,14 @@ table#benchmark tr td.intensity, table#benchmark tr th.intensity {
     text-align: right;
 }
 
-table#benchmark tr th.dummy {
+table#benchmark tr.My-Company td {
+    background: Green;
+    color: White
+}
+
+table#filter {
+    font-weight: bold;
+    font-size: 130%;
 }
 
 

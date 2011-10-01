@@ -1,1 +1,0 @@
-page.insert_html :before, "totals", :partial => 'edit_row', :locals =>{:calculation=>@calculation}

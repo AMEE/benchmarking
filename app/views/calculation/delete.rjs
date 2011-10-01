@@ -1,2 +1,0 @@
-page.replace_html 'totals', :partial => 'total_row', :locals => { :calculations => @calculations, :prototype_calculation => @prototype_calculation }
-page.remove @row_id
