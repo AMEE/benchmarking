@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery
   
-  include AuthHelper
+  include AMEE::Authentication::AuthHelper
   include ApplicationHelper
   helper_method :current_user_session, :current_user, :logged_in?, :admin_login_required
   before_filter :initialize_all_company_data

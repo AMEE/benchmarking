@@ -12,8 +12,9 @@
       filters$ = $("table#filter td select")
       
       filters$.live('change', function(){
+
+        cells$ = $("table#benchmark tbody tr td").not(".dummy");
         
-        cells$ = $("table#benchmark tbody tr td");
         renderLoadingGif(cells$);
         query = encodeURI($(this).attr('id') + "=" + $(this).attr('value').replace(/&/, "%26"));
 
@@ -25,15 +26,20 @@
         });
       });
 
-      managePageStyle();
+      manageTableStyle();
+      manageAddedRows();
 
     });
 
-    function managePageStyle() {
+    function manageTableStyle() {
       tableRowBackgroundColor($("table#benchmark tbody tr:odd"), '#f0f0ff');
       tableRowBackgroundColor($("table#benchmark tbody tr:even"), 'White');
-      tableRowBackgroundColor($("table#benchmark tbody tr#my-company"), 'Green');
 
+      tableHeaderWidth();
+
+    }
+
+    function manageAddedRows() {
       $("table#benchmark tbody tr#my-company").children("td").each(function(){
           $(this).css('background',"#e8ffe8");
       });
@@ -41,8 +47,6 @@
       $("table#benchmark tbody tr#sector-average").children("td").each(function(){
           $(this).css('background',"#5e5e5e").css('color', 'White');
       });
-
-      tableHeaderWidth();
 
       scrollToMyCompany();
     }

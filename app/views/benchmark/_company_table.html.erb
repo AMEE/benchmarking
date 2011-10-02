@@ -8,7 +8,7 @@
     <% if @normalized %>
       <td style="color: #ff7a8d; white-space: normal; text-align: right;width:500px;"><%= "These data are normalized to company #{session[:settings][:financialMetric]}" %></td>
     <% else %>
-      <td style="color: #79afff; white-space: normal; text-align: right;width:500px;"><%= "These data represent true, reported values" %></td>
+      <td style="color: #79afff; white-space: normal; text-align: right;width:500px;"><%= "These data represent raw, reported values" %></td>
     <% end %>
   </tr>
 </table>

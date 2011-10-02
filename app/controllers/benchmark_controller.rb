@@ -20,11 +20,11 @@ class BenchmarkController < ApplicationController
     initialize_data
     unless session[:settings][:financial_measure].blank?
       @normalized = true
-      normalize_data
-      append_average_sector_representation
+      normalize_data if @items.size > 0
+      append_average_sector_representation if @items.size > 0
       if !session[:settings][:massScopeOneCO2e].blank? || !session[:settings][:massScopeTwoCO2e].blank? ||
           !session[:settings][:energyScopeOne].blank? || !session[:settings][:energyScopeTwoTotal].blank?
-        append_custom_company_representation
+        append_custom_company_representation  if @items.size > 0
       end
       sort_data
     end

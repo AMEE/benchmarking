@@ -1,2 +1,2 @@
 page.replace_html 'benchmark-table-wrapper', :partial => 'company_table'
-page << "managePageStyle()"
+page << "manageTableStyle()"

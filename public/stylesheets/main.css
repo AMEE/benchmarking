@@ -260,49 +260,6 @@ div.note h3.close {
     background: #c8d828;
 }
 
-
-#scroll_left {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    -moz-box-shadow: 2px 1px 5px DarkGray;
-    -webkit-box-shadow: 2px 1px 5px DarkGray;
-    box-shadow: 2px 1px 5px DarkGray;
-}
-
-#scroll_right {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    -moz-box-shadow: -2px 1px 5px DarkGray;
-    -webkit-box-shadow: -2px 1px 5px DarkGray;
-    box-shadow: -2px 1px 5px DarkGray;
-}
-
-div#calculation_tabs {
-   position: fixed;
-   width: 100%;
-   bottom: 0px;
-   white-space: nowrap;
-   background: transparent;
-   z-index: 2;
-   display: inline-block;
-   font-size: 13px;
-   white-space: nowrap;
-   overflow-x: hidden;
-   text-align: bottom;
-}
-
-#moving_tabs {
-   position: relative;
-   margin-bottom: 0;
-   padding: 0;
-   bottom: 0;
-   left: 0px;
-   overflow-x: hidden;
-   vertical-align: bottom;
-}
-
 .tab {
   display: inline-block;
   background: #C8C8C8;
@@ -365,49 +322,6 @@ div#calculation_tabs {
    color: White;
 }
 
-.scroll_tab_click {
-   background: #c8d828;
-   color: Black;
-   text-shadow: 2px 2px 2px White;
-}
-
-#calculation_tabs .tab a {
-  color: Black;
-  text-shadow: 2px 2px 2px White;
-  text-decoration: none;
-}
-
-#calculation_tabs .selected a {
-  color: White;
-  text-shadow: none;
-}
-
-#calculation_tabs div.dummy, #calculation_tabs div.dummy:hover {
-    background: transparent;
-    border: none;
-    color: transparent;
-    -moz-box-shadow: none;
-   -webkit-box-shadow: none;
-   box-shadow: none;
-}
-
-#calculation_tabs .tab:hover {
-   background: #c8d828;
-   border-top: 1px solid White;
-   -moz-box-shadow: 1px 1px 5px DarkGray;
-   -webkit-box-shadow: 1px 1px 5px DarkGray;
-   box-shadow: 1px 1px 5px DarkGray;
-}
-
-#calculation_tabs .selected, #calculation_tabs .selected:hover {
-  color: White;
-  background: #3f9d9b;
-  font-weight: bold;
-  border-top: 1px solid White;
-  -moz-box-shadow: 1px 1px 5px DarkGray;
-   -webkit-box-shadow: 1px 1px 5px DarkGray;
-   box-shadow: 1px 1px 5px DarkGray;
-}
 
 .dummy a {
     color: transparent;
@@ -536,9 +450,10 @@ div#contentarea {
 #benchmark-form-wrapper {
     position: relative;
     top: 0px;
-    padding: 30px;
+    padding: 20px;
     height: auto;
-    width: 500px;
+    width: 550px;
+    font-weight: bold;
 }
 
 #benchmark-form-wrapper div {
@@ -734,4 +649,56 @@ div.clear {
     height: 0;
 }
 
+#amee-logo {
+    position: absolute;
+    top: 90px;
+    left: 10px;
+}
 
+#tagline {
+    position: absolute;
+    top: 80px;
+    right: 90px;
+    text-align: right;
+    font-size: 130%;
+    line-height: 0.5;
+    text-shadow: 4px 4px 4px White;
+
+}
+
+#tagline h1 {
+  color: #9b9b9b;
+}
+
+#tagline h2 {
+  color: #9b9b9b;
+}
+
+#benchmark-form-wrapper form input[type='submit'] {
+    position: relative;
+    background: #E0E0E0;
+    padding: 5px 10px;
+    font-size: 13px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    white-space: nowrap;
+    color: Black;
+    text-shadow: 2px 2px 2px White;
+    text-decoration: none;
+    margin-top: 8px;
+    margin-right: 0px;
+}
+
+#benchmark-form-wrapper form input[type='submit']:hover {
+    background: #afcfff;
+}

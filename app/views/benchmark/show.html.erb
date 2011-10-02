@@ -1,4 +1,11 @@
 <%= render :partial => 'benchmark_scripts' %>
+<div id="amee-logo">
+  <%= image_tag 'AMEE-Logo2011-LINE_Green.png', :alt => 'AMEE'%>
+</div>
+<div id="tagline">
+  <h2>sector</h2>
+  <h1>benchmarking</h1>
+</div>
 
 <div id="benchmark-form-wrapper" class="content_pane" >
   <div>
@@ -39,7 +46,7 @@
         <td><%= text_field_tag 'scope2_energy', session[:settings][:energyScopeTwoTotal] %> Megawatt hours (MWh)</td>
       </tr>
     </table>
-    <div>
+    <div id="benchmark-submit">
       <%= submit_tag 'Benchmark me!' %>
     </div>
     <% end %>
