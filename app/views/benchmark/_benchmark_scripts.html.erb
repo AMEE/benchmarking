@@ -1,22 +1,28 @@
 <% content_for :head do %>
 
 <script type="text/javascript" src="/javascripts/jquery.tablesorter.js"></script>
+<script src='http://www.google.com/jsapi'></script> 
 
   <% javascript_tag do %>
 
     $(document).ready(function(){
-
       
-      $("table#benchmark").tablesorter();
+      //$("table#benchmark").tablesorter();
 
       filters$ = $("table#filter td select")
       
       filters$.live('change', function(){
 
-        cells$ = $("table#benchmark tbody tr td").not(".dummy");
-        
+        row$ = $("table#benchmark tbody tr:first")
+        rows$ = $("table#benchmark tbody").children("tr:gt(0)");
+        cells$ = row$.children("td").not(".dummy");
+
+        rows$.remove();
+        $("table#benchmark th.dummy").width("0px");
+
         renderLoadingGif(cells$);
-        query = encodeURI($(this).attr('id') + "=" + $(this).attr('value').replace(/&/, "%26"));
+
+        query = $(this).attr('id') + "=" + $(this).attr('value').replace(/&/g, "%26");
 
         jQuery.ajax({
           data:     query,
@@ -41,24 +47,26 @@
 
     function manageAddedRows() {
       $("table#benchmark tbody tr#my-company").children("td").each(function(){
-          $(this).css('background',"#e8ffe8");
+          $(this).css('background',"#33CC66").css('color', 'White');
       });
 
       $("table#benchmark tbody tr#sector-average").children("td").each(function(){
           $(this).css('background',"#5e5e5e").css('color', 'White');
       });
 
-      scrollToMyCompany();
+      scrollToCompany("my-company");
     }
 
-    function scrollToMyCompany() {
+    function scrollToCompany(name) {
       container = $("table#benchmark tbody");
       height = container.height();
       contentHeight = container.attr('scrollHeight');
       if (contentHeight > height) {
-        row = $("table#benchmark tbody tr#my-company");
+        row = $("table#benchmark tbody tr#"+name);
         position = row.position();
-        container.animate({scrollTop: position.top-(height/2)}, 2000);
+        if (typeof(position) != 'undefined') {
+          container.animate({scrollTop: position.top-(height/2)}, 2000);
+        }
       }
     }
 
@@ -82,5 +90,5 @@
 
     }
 
-  <% end %>
+  <% end %>    
 <% end %>

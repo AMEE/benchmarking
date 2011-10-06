@@ -445,15 +445,45 @@ div#contentarea {
     height: auto;
     margin-bottom: 40px;
     margin-top: 15px;
+    margin-left: 15px;
+}
+
+#upper-pane {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+#chart {
+    width: 990px;
+    float: right;
+    height: 300px;
+    text-align: center;
+}
+
+#chart img {
+    position: relative;
+    margin-top: 100px;
+}
+
+iframe {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
 }
 
 #benchmark-form-wrapper {
     position: relative;
     top: 0px;
+    left: 0px;
     padding: 20px;
-    height: auto;
+    height: 260px;
     width: 550px;
     font-weight: bold;
+    margin: 0;
+    margin-left: 15px;
+    float: left;
 }
 
 #benchmark-form-wrapper div {
@@ -462,21 +492,22 @@ div#contentarea {
 
 #benchmark-table-wrapper {
     position: relative;
-    height: 380px;
+    height: 370px;
     width: auto;
     overflow-x: hidden;
 }
 
 table#benchmark {
     position: relative;
+    margin-top: 10px;
     width: auto;
     height: auto;
     max-height: 380px;
     table-layout: fixed;
 }
 table#benchmark thead {
-    position: absolute;
-    top: 35px;
+    position: relative;
+    margin-top: 20px;
     left: 0px;
     width: auto;
     height: 45px;
@@ -488,13 +519,12 @@ table#benchmark thead {
 
 table#benchmark tbody {
     position: absolute;
-    top: 90px;
+    top: 100px;
     left: 0px;
     height: auto;
-    max-height: 285px;
+    max-height: 270px;
     width: auto;
     overflow-y: auto;
-    display: block;
 }
 
 table#benchmark tr td {
@@ -629,7 +659,6 @@ td select, input {
 td select:focus, input:focus {
     background: inherit;
     color: DarkGray;
-    font-weight: bolder;
 }
 
 td select:hover, input:hover {

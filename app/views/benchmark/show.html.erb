@@ -1,33 +1,11 @@
 <%= render :partial => 'benchmark_scripts' %>
-<div id="amee-logo">
-  <%= image_tag 'AMEE-Logo2011-LINE_Green.png', :alt => 'AMEE'%>
-</div>
-<div id="tagline">
-  <h2>sector</h2>
-  <h1>benchmarking</h1>
-</div>
-
-<div id="benchmark-form-wrapper" class="content_pane" >
-  <div>
+<div id="upper-pane">
+  <div  id="benchmark-form-wrapper" class="content_pane">
     <% form_tag(benchmark_path, :method => 'get') do %>
     <table>
       <tr class="benchmark-select">
         <td>Choose a sector</td>
         <td><%= select_tag 'sector', options_for_select(@sector_list, session[:settings][:sector]) %></td>
-      </tr>
-      <% if false %>
-        <tr class="benchmark-select">
-          <td>Choose a country</td>
-          <td><%= select_tag 'country', options_for_select(@country_list, session[:settings][:country]) %></td>
-        </tr>
-      <% end %>
-      <tr class="benchmark-select">
-        <td>Choose a financial metric</td>
-        <td><%= select_tag 'financialMetric', options_for_select(@financial_metric_list, session[:settings][:financialMetric]) %></td>
-      </tr>
-      <tr class="benchmark-text">
-        <td>Set a financial benchmark</td>
-        <td><%= text_field_tag 'financial_measure', session[:settings][:financial_measure] %> USD ($)</td>
       </tr>
       <tr class="benchmark-text">
         <td>Set scope 1 emissions</td>
@@ -45,11 +23,26 @@
         <td>Set scope 2 energy consumption</td>
         <td><%= text_field_tag 'scope2_energy', session[:settings][:energyScopeTwoTotal] %> Megawatt hours (MWh)</td>
       </tr>
+      <tr class="benchmark-select">
+        <td>Choose a financial metric</td>
+        <td><%= select_tag 'financialMetric', options_for_select(@financial_metric_list, session[:settings][:financialMetric] || 'Revenue') %></td>
+      </tr>
+      <tr class="benchmark-text">
+        <td>Set a financial benchmark</td>
+        <td><%= text_field_tag 'financial_measure', session[:settings][:financial_measure] %> USD ($)</td>
+      </tr>
+      <tr class="benchmark-text">
+        <td>Normalize grid electricity</td>
+        <td><%= select_tag 'country_for_grid_normalization', options_for_select(@country_list_for_grid_normalization,session[:settings][:country_for_grid_normalization] || 'None') %></td>
+      </tr>
     </table>
     <div id="benchmark-submit">
-      <%= submit_tag 'Benchmark me!' %>
+      <%= submit_tag 'Benchmark!' %>
     </div>
     <% end %>
+  </div>
+  <div id="chart" class="content_pane">
+    <%= render :partial => 'chart' %>
   </div>
 </div>
 <div id="benchmark-wrapper" class="content_pane">

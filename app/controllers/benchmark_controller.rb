@@ -15,18 +15,29 @@ class BenchmarkController < ApplicationController
 
   def generate
     @normalized = false
+    @grid_normalized = false
+    @sector_average = false
     initialize_lists
     initialize_settings(params)
     initialize_data
     unless session[:settings][:financial_measure].blank?
       @normalized = true
       normalize_data if @items.size > 0
-      append_average_sector_representation if @items.size > 0
-      if !session[:settings][:massScopeOneCO2e].blank? || !session[:settings][:massScopeTwoCO2e].blank? ||
-          !session[:settings][:energyScopeOne].blank? || !session[:settings][:energyScopeTwoTotal].blank?
-        append_custom_company_representation  if @items.size > 0
-      end
+    end
+    if @items.size > 0 && !session[:settings][:sector].blank?
+      append_average_sector_representation
+    end
+    if !session[:settings][:massScopeOneCO2e].blank? || !session[:settings][:massScopeTwoCO2e].blank? ||
+         !session[:settings][:energyScopeOne].blank? || !session[:settings][:energyScopeTwoTotal].blank?
+      append_custom_company_representation  if @items.size > 0
+    end
+    if !session[:settings][:country_for_grid_normalization].blank?
+      @grid_normalized = true
+      normalize_grid
+    end
+    if valid_selections? && @items.size > 0
       sort_data
+      column_chart
     end
   end
 
@@ -39,28 +50,42 @@ class BenchmarkController < ApplicationController
     end
   end
 
+  def normalize_grid
+    @grid_intensity_factor = get_grid_intensity_factor
+    @items.each do |item|
+      unless item['energyScopeTwoElectricity'].blank?
+        item['massScopeTwoCO2e']['value'] = (item['energyScopeTwoElectricity']['value'].to_f * @grid_intensity_factor.to_f).round(2)
+      end
+    end
+  end
+
   def sort_data
     @items.sort! do |item, next_item|
-      (item['massScopeOneCO2e']['value'].to_f + item['massScopeTwoCO2e']['value'].to_f) <=> (next_item['massScopeOneCO2e']['value'].to_f + next_item['massScopeTwoCO2e']['value'].to_f)
+      (total_emissions(item)) <=> (total_emissions(next_item))
     end
   end
 
   def append_custom_company_representation
     hash = {}
     hash["company"] = { "value" => "My Company" }
-    hash["massScopeTwoCO2e"] = { "unit" => "t", "value" => session[:settings][:massScopeTwoCO2e] }
+    hash["massScopeTwoCO2e"] = { "unit" => "t", "value" => (session[:settings][:massScopeTwoCO2e].blank? ? nil : session[:settings][:massScopeTwoCO2e].to_f.round(2)) }
     hash["country"] = { "value" => ""}
     hash["financialMetric"] = { "value" => session[:settings][:financialMetric] }
-    hash["massScopeOneCO2e"] = { "unit" => "t", "value" => session[:settings][:massScopeOneCO2e].to_f.round(2) }
-    hash["energyScopeTwoTotal"] = { "unit" => "MWh", "value" => session[:settings][:energyScopeTwoTotal].to_f.round(2) }
-    hash["energyScopeOne"] = { "unit" => "MWh", "value" => session[:settings][:energyScopeOne].to_f.round(2) }
+    hash["massScopeOneCO2e"] = { "unit" => "t", "value" => (session[:settings][:massScopeOneCO2e].blank? ? nil : session[:settings][:massScopeOneCO2e].to_f.round(2)) }
+    hash["energyScopeTwoTotal"] = { "unit" => "MWh", "value" => session[:settings][:energyScopeTwoTotal].blank? ? nil : session[:settings][:energyScopeTwoTotal].to_f.round(2) }
+    hash["energyScopeOne"] = { "unit" => "MWh", "value" => session[:settings][:energyScopeOne].blank? ? nil : session[:settings][:energyScopeOne].to_f.round(2) }
     hash["totalFinancialMetricUSD"] = { "value" => session[:settings][:financial_measure].to_f.round(2) }
-    hash["massCO2ePerUSDFinancialMetric"] = { "unit" => "kg", "value"=> ((session[:settings][:massScopeOneCO2e].to_f+session[:settings][:massScopeTwoCO2e].to_f)/session[:settings][:financial_measure].to_f).round(2) }
+    if !session[:settings][:massScopeOneCO2e].blank? && !session[:settings][:massScopeTwoCO2e].blank? && !session[:settings][:financial_measure].blank?
+      hash["massCO2ePerUSDFinancialMetric"] = { "unit" => "kg", "value"=> ((session[:settings][:massScopeOneCO2e].to_f+session[:settings][:massScopeTwoCO2e].to_f)/session[:settings][:financial_measure].to_f).round(7) }
+    else
+      hash["massCO2ePerUSDFinancialMetric"] = ""
+    end
     hash["sector"] = {"value"=> session[:settings][:sector] }
     @items << hash
   end
 
   def append_average_sector_representation
+    @sector_average = true
     hash = {}
     hash["company"] = { "value" => "Sector average" }
     hash["massScopeTwoCO2e"] = { "unit" => "t", "value" => (@items.inject(0.0) { |sum, item| sum + item['massScopeTwoCO2e']['value'].to_f }/@items.size.to_f).round(2) }
@@ -68,17 +93,12 @@ class BenchmarkController < ApplicationController
     hash["financialMetric"] = { "value" => session[:settings][:financialMetric] }
     hash["massScopeOneCO2e"] = { "unit" => "t", "value" => (@items.inject(0.0) { |sum, item| sum + item['massScopeOneCO2e']['value'].to_f }/@items.size.to_f).round(2) }
     hash["energyScopeTwoTotal"] = { "unit" => "MWh", "value" => (@items.inject(0.0) { |sum, item| sum + item['energyScopeTwoTotal']['value'].to_f }/@items.size.to_f).round(2) }
+    hash["energyScopeTwoElectricity"] = { "unit" => "MWh", "value" => (@items.inject(0.0) { |sum, item| sum + item['energyScopeTwoElectricity']['value'].to_f }/@items.size.to_f).round(2) }
     hash["energyScopeOne"] = { "unit" => "MWh", "value" => (@items.inject(0.0) { |sum, item| sum + item['energyScopeOne']['value'].to_f }/@items.size.to_f).round(2) }
     hash["totalFinancialMetricUSD"] = { "value" => (@items.inject(0.0) { |sum, item| sum + item['totalFinancialMetricUSD']['value'].to_f }/@items.size.to_f).round(2) }
     hash["massCO2ePerUSDFinancialMetric"] = { "unit" => "kg", "value"=> "" }
     hash["sector"] = {"value"=> session[:settings][:sector] }
     @items << hash
-  end
-
-  def update
-    initialize_lists
-    initialize_settings(params)
-    initialize_data
   end
 
   def initialize_settings(params)
@@ -90,7 +110,8 @@ class BenchmarkController < ApplicationController
     session[:settings][:massScopeOneCO2e]  = params['scope1_emissions']
     session[:settings][:massScopeTwoCO2e]  = params['scope2_emissions']
     session[:settings][:energyScopeOne]  = params['scope1_energy']
-    session[:settings][:energyScopeTwoTotal]  = params['scope2_energy']
+    session[:settings][:energyScopeTwoTotal] = params['scope2_energy']
+    session[:settings][:country_for_grid_normalization] = params['country_for_grid_normalization'] == 'None' ? nil : params['country_for_grid_normalization']
   end
 
   def initialize_data
@@ -165,14 +186,89 @@ class BenchmarkController < ApplicationController
     return string
   end
 
+  def total_emissions(item)
+    item['massScopeOneCO2e']['value'].to_f + item['massScopeTwoCO2e']['value'].to_f
+  end
+
+  def column_chart
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_column('string', 'Company')
+    data_table.new_column('number', 'CO2e (t)')
+    data_table.new_column('number', 'CO2e (t)')
+    data_table.new_column('number', 'CO2e (t)')
+    data_table.add_rows(@items.size)
+    @items.each_with_index do |item,index|
+      data_table.set_cell(index, 0, item['company']['value'])
+      if item['company']['value'] == 'My Company'
+        data_table.set_cell(index, 1, 0)
+        data_table.set_cell(index, 2, total_emissions(item))
+        data_table.set_cell(index, 3, 0)
+      elsif item['company']['value'] == 'Sector average'
+        data_table.set_cell(index, 1, 0)
+        data_table.set_cell(index, 2, 0)
+        data_table.set_cell(index, 3, total_emissions(item))
+      else
+        data_table.set_cell(index, 1, total_emissions(item))
+        data_table.set_cell(index, 2, 0)
+        data_table.set_cell(index, 3, 0)
+      end
+    end
+
+    if @grid_normalized
+      title = 'Scopes 1 and 2 (electricity only) emissions by company'
+    else
+      title = 'Total scopes 1 and 2 emissions by company'
+    end
+
+    opts = { :width => 980,
+             :height => 300,
+             :title => title,
+             :titlePosition => 'out',
+             :titleTextStyle => { :color => '#525252'},
+             :colors =>  ['#79afff','#33CC66','#5e5e5e'],
+             :chartArea => { :width => 800, :left => 150, :top => 70 },
+             :vAxis => { :title => 'CO2e (tonnes)',
+                         :titleTextStyle => {:color => '#525252'}},
+             :hAxis => { :textPosition => 'in',
+                         :slantedText => 'true',
+                         :slantedTextAngle => 90,
+                         :maxAlternation => 4 },
+             :legend => 'none',
+             :backgroundColor => { :stroke => '#79afff'},
+             :enableInteractivity => 'true',
+             :isStacked => 'true'
+           }
+    @chart = GoogleVisualr::Interactive::ColumnChart.new(data_table, opts)
+    chart_select_callback = "function(){cell = chart.getSelection()[0]; value = data_table.getFormattedValue(cell.row,0);  scrollToCompany(value.toLowerCase().replace(/ /g,'-'));}"
+    @chart.add_listener(:select,chart_select_callback)
+    return @chart
+  end
+
+  def country_drill_down_list
+    AMEE::Data::DrillDown.get(connection, "/data/business/energy/electricity/defra/international/drill").choices.unshift("None")
+  end
+
+  def get_grid_intensity_factor
+    uid = AMEE::Data::DrillDown.get(connection,
+      "/data/business/energy/electricity/defra/international/drill?country=#{CGI::escape(session[:settings][:country_for_grid_normalization])}&type=electricity+consumption").data_item_uid
+    item = AMEE::Data::Item.get(connection,
+       "/data/business/energy/electricity/defra/international/#{uid}")
+     factor = item.values.find { |value| value[:path] == 'annualMassDirectCO2PerEnergy'}[:value]
+  end
+
   def initialize_lists
     @sector_list = SECTOR_LIST
     @country_list = COUNTRY_LIST
     @financial_metric_list = FINANCIAL_METRIC_LIST
+    @country_list_for_grid_normalization = country_drill_down_list
   end
 
   def normalized_attributes
-    [ 'massScopeTwoCO2e', 'massScopeOneCO2e', 'energyScopeTwoTotal', 'energyScopeOne' ]
+    [ 'massScopeTwoCO2e', 'massScopeOneCO2e', 'energyScopeTwoTotal', 'energyScopeOne', 'energyScopeTwoElectricity' ]
+  end
+
+  def connection
+    AMEE::Rails.connection
   end
 
   def auth_credentials
@@ -181,7 +277,6 @@ class BenchmarkController < ApplicationController
   end
 
   IGNORED_ATTRIBUTES = [ "energyScopeTwoCooling",
-                         "energyScopeTwoElectricity",
                          "reportingPeriodStart",
                          "energyScopeTwoHeat",
                          "reportingPeriodEnd",
@@ -358,4 +453,51 @@ class BenchmarkController < ApplicationController
                             "Revenue",
                             "Turnover" ]
   
+end
+
+module GoogleVisualr
+
+  class BaseChart
+
+    def initialize(data_table, options={})
+      @data_table = data_table
+      @listeners = []
+      send(:options=, options)
+    end
+
+    def options
+      @options
+    end
+
+    def options=(options)
+      @options = stringify_keys!(options)
+    end
+
+    attr_accessor :listeners
+
+    # Generates JavaScript and renders the Google Chart in the final HTML output.
+    #
+    # Parameters:
+    # *div_id [Required] The ID of the DIV element that the Google Chart should be rendered in.
+    def to_js(element_id)
+      js = "\n<script type='text/javascript'>"
+      js << "\n google.load('visualization','1', {packages: ['#{package_name}'], callback: function() {"
+      js << "\n #{@data_table.to_js}"
+      js << "\n var chart = new google.visualization.#{class_name}(document.getElementById('#{element_id}'));"
+      js << "\n chart.draw(data_table, #{js_parameters(@options)});"
+      @listeners.each do |listener|
+        js << "google.visualization.events.addListener(chart, '#{listener[0]}', #{listener[1]});"
+      end
+      js << "\n }});"
+      js << "\n</script>"
+
+      js
+    end
+
+    def add_listener(type,callback)
+      @listeners << [type.to_s, callback]
+    end
+
+  end
+
 end
