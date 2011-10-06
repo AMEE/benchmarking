@@ -5,7 +5,7 @@
     <table>
       <tr class="benchmark-select">
         <td>Choose a sector</td>
-        <td><%= select_tag 'sector', options_for_select(@sector_list, session[:settings][:sector]) %></td>
+        <td><%= select_tag 'sector', options_for_select(@sector_list.reject {|s| s == 'All'}, session[:settings][:sector]) %></td>
       </tr>
       <tr class="benchmark-text">
         <td>Set scope 1 emissions</td>
@@ -25,7 +25,7 @@
       </tr>
       <tr class="benchmark-select">
         <td>Choose a financial metric</td>
-        <td><%= select_tag 'financialMetric', options_for_select(@financial_metric_list, session[:settings][:financialMetric] || 'Revenue') %></td>
+        <td><%= select_tag 'financialMetric', options_for_select(@financial_metric_list.reject {|s| s == 'All'}, session[:settings][:financialMetric] || 'Revenue') %></td>
       </tr>
       <tr class="benchmark-text">
         <td>Set a financial benchmark</td>

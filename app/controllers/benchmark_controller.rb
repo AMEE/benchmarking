@@ -280,7 +280,8 @@ class BenchmarkController < ApplicationController
                          "reportingPeriodEnd",
                          "energyScopeTwoSteam" ]
 
-  COUNTRY_LIST = [ "Argentina",
+  COUNTRY_LIST = [ "All",
+                   "Argentina",
                    "Australia",
                    "Austria",
                    "Belgium",
@@ -315,7 +316,8 @@ class BenchmarkController < ApplicationController
                    "United Kingdom",
                    "USA" ]
 
-  SECTOR_LIST = [ "Advertising",
+  SECTOR_LIST = [ "All",
+    "             Advertising",
                   "Aerospace & Defense",
                   "Agricultural Products",
                   "Air Freight & Logistics",
@@ -446,7 +448,8 @@ class BenchmarkController < ApplicationController
                   "Water Utilities",
                   "Wireless Telecommunication Services" ]
 
-  FINANCIAL_METRIC_LIST = [ "EBITDA",
+  FINANCIAL_METRIC_LIST = [ "All",
+                            "EBITDA",
                             "Profit",
                             "Revenue",
                             "Turnover" ]

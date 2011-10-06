@@ -2,9 +2,9 @@
 <table id="filter">
   <tr>
     <td>Filter by:</td>
-    <td>Sector: <%= select_tag 'sector', options_for_select(@sector_list.unshift("All"), session[:settings][:sector] || "All") %></td>
-    <td>Country: <%= select_tag 'country', options_for_select(@country_list.unshift("All"), session[:settings][:country] || "All") %></td>
-    <td>Financial metric: <%= select_tag 'financialMetric', options_for_select(@financial_metric_list.unshift("All"), session[:settings][:financialMetric] || "All") %></td>
+    <td>Sector: <%= select_tag 'sector', options_for_select(@sector_list, session[:settings][:sector] || "All") %></td>
+    <td>Country: <%= select_tag 'country', options_for_select(@country_list, session[:settings][:country] || "All") %></td>
+    <td>Financial metric: <%= select_tag 'financialMetric', options_for_select(@financial_metric_list, session[:settings][:financialMetric] || "All") %></td>
     <% color = "#ff7a8d" %>
     <% font_size = "100%"%>
     <% if @normalized && @grid_normalized %>

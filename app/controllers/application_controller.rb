@@ -7,19 +7,12 @@ class ApplicationController < ActionController::Base
   
   include ApplicationHelper
   before_filter :set_amee_credentials, :initialize_all_company_data
-  
-  def home
-    
-  end
 
   def initialize_all_company_data
     Rails.cache.write('all_company_data',BenchmarkController.new.get_company_data) unless Rails.cache.exist?('all_company_data')
   end
 
   def set_amee_credentials
-    puts "amee config: #{$AMEE_CONFIG}"
-    puts "env user: #{ENV['AMEE_USERNAME']}"
-    puts "env pass #{ENV['AMEE_PASSWORD']}"
     $AMEE_CONFIG['username'] = ENV['AMEE_USERNAME']
     $AMEE_CONFIG['password'] = ENV['AMEE_PASSWORD']
   end
