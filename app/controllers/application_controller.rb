@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   include AMEE::Authentication::AuthHelper
   include ApplicationHelper
   helper_method :current_user_session, :current_user, :logged_in?, :admin_login_required
-  before_filter :initialize_all_company_data
+  before_filter :set_amee_credentials, :initialize_all_company_data
   
   def home
     if logged_in?
@@ -20,6 +20,11 @@ class ApplicationController < ActionController::Base
 
   def initialize_all_company_data
     Rails.cache.write('all_company_data',BenchmarkController.new.get_company_data) unless Rails.cache.exist?('all_company_data')
+  end
+
+  def set_amee_credentials
+    $AMEE_CONFIG['username'] = ENV['AMEE_USERNAME']
+    $AMEE_CONFIG['password'] = ENV['AMEE_PASSWORD']
   end
 
   
