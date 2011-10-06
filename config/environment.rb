@@ -23,10 +23,6 @@ Rails::Initializer.run do |config|
   config.gem "quantify", :version => "1.2.2"
   config.gem "amee", :version => "~> 3.0.0"
   config.gem "amee-internal"
-  config.gem "amee-data-abstraction", :version => "~> 1.1"
-  config.gem "amee-data-persistence", :version => "~> 1.1"
-  config.gem "amee-analytics", :version => "~> 1.0.1"
-  config.gem "amee-data-entry", :version => "1.0.0.rc2"
   config.gem "amee-auth", :version => "0.3.1"
   config.gem "google_visualr", :version => "2.0.6"
 
@@ -48,9 +44,4 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
-
-  config_file = RAILS_ROOT + "/config/config.yml"
-  raise "#{config_file} not found" unless File.exist?(config_file)
-  config = YAML.load_file(config_file)
-  $tool_name = config['tool_name']
 end
