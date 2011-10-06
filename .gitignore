@@ -2,4 +2,3 @@ db/*.sqlite3
 nbproject/
 vendor/plugins/Link to amee-data-persistence
 config/database.yml
-config/amee.yml

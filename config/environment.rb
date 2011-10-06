@@ -23,7 +23,6 @@ Rails::Initializer.run do |config|
   config.gem "quantify", :version => "1.2.2"
   config.gem "amee", :version => "~> 3.0.0"
   config.gem "amee-internal"
-  config.gem "amee-auth", :version => "0.3.1"
   config.gem "google_visualr", :version => "2.0.6"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -40,12 +39,6 @@ Rails::Initializer.run do |config|
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'UTC'
-
-  amee_config = "#{RAILS_ROOT}/config/amee.yml"
-  if File.exist?(amee_config)
-    # Load config
-    $AMEE_CONFIG = YAML.load_file(amee_config)[RAILS_ENV]
-  end
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
