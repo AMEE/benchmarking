@@ -23,6 +23,9 @@ class ApplicationController < ActionController::Base
   end
 
   def set_amee_credentials
+    puts "amee config: #{$AMEE_CONFIG}"
+    puts "env user: #{ENV['AMEE_USERNAME']}"
+    puts "env pass #{ENV['AMEE_PASSWORD']}"
     $AMEE_CONFIG['username'] = ENV['AMEE_USERNAME']
     $AMEE_CONFIG['password'] = ENV['AMEE_PASSWORD']
   end
