@@ -2,7 +2,6 @@ GEM
   remote: http://rubygems.org/
   remote: http://amee:aeC5ahx4@gems.amee.com/
   specs:
-    acl9 (0.12.0)
     actionmailer (2.3.11)
       actionpack (= 2.3.11)
     actionpack (2.3.11)
@@ -18,17 +17,8 @@ GEM
       json
       log4r
       nokogiri (~> 1.4.3.1)
-    amee-auth (0.3.1)
-      acl9 (~> 0.12.0)
-      actionpack (~> 2.3.11)
-      activerecord (~> 2.3.11)
-      activesupport (~> 2.3.11)
-      authlogic (~> 2.1.6)
-      rake (>= 0.8.7)
     amee-internal (4.0.0)
       amee (~> 3.0)
-    authlogic (2.1.6)
-      activesupport
     google_visualr (2.0.6)
     i18n (0.6.0)
     json (1.6.1)
@@ -52,7 +42,6 @@ PLATFORMS
 
 DEPENDENCIES
   amee (~> 3.0.1)
-  amee-auth (~> 0.3.1)
   amee-internal
   google_visualr (= 2.0.6)
   quantify (= 1.2.2)
