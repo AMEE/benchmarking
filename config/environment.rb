@@ -41,6 +41,12 @@ Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'UTC'
 
+  amee_config = "#{RAILS_ROOT}/config/amee.yml"
+  if File.exist?(amee_config)
+    # Load config
+    $AMEE_CONFIG = YAML.load_file(amee_config)[RAILS_ENV]
+  end
+
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
