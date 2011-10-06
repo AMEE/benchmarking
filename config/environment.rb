@@ -22,7 +22,6 @@ Rails::Initializer.run do |config|
 
   config.gem "quantify", :version => "1.2.2"
   config.gem "amee", :version => "~> 3.0.0"
-  config.gem "amee-internal"
   config.gem "google_visualr", :version => "2.0.6"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
