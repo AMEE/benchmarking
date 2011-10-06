@@ -38,5 +38,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  amee (~> 2.6)
+  amee (~> 3.0.1)
   rails (= 2.3.11)
