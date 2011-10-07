@@ -6,10 +6,6 @@
 /* DISPLAY PRODUCT NAME AS "explorer" EVERYWHERE */
 
 
-span.explorer {
-    font-style: italic;
-}
-
 /* SITE BODY STYLES */
 
 body {
@@ -38,332 +34,6 @@ body {
 
 a {
   text-decoration: none;
-}
-
-#header_tabs {
-  position: absolute;
-  top: 0px;
-  vertical-align: middle;
-  font-size: 130%;
-  font-weight: normal;
-  right: 10px;
-}
-
-#logo {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1;
-}
-
-span#screenshot {
-    position: absolute;
-    top: 100px;
-    right: 2%;
-}
-
-#help_container {
-  float:right;
-  width: 280px;
-  position: absolute;
-  right: 20px;
-  top: 25px;
-  height: 90%;
-  z-index: 1;
-  background: transparent;
-  overflow-y: auto;
-}
-
-#help {
-    position: relative;
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    top: 0px;
-    padding-right: 0px;
-}
-
-div.note {
-    background: White;
-    background-image: url( '../images/cell_fill.png' );
-    background-repeat: repeat-x;
-    background-position: top;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    -moz-border-radius-topleft: 10px;
-    -moz-border-radius-topright: 10px;
-    -webkit-border-top-left-radius: 10px;
-    -webkit-border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottomp-right-radius: 10px;
-    -moz-border-radius-bottomleft: 10px;
-    -moz-border-radius-bottomright: 10px;
-    -webkit-border-bottom-left-radius: 10px;
-    -webkit-border-bottom-right-radius: 10px;
-    margin: 10px;
-    border-top: 3px solid White;
-    border-bottom: 3px solid DarkGray;
-    -moz-box-shadow: -2px 5px 10px DarkGray;
-    -webkit-box-shadow: -2px 5px 10px DarkGray;
-    box-shadow: -2px 5px 10px DarkGray;
-}
-
-div.note h3.note, p {
-    text-align: left;
-    position: relative;
-    margin-left: 20px;
-    width: 90%;
-}
-
-div.note p {
-    display: none;
-}
-
-div.head, div.base {
-    text-shadow: 2px 2px 2px White;
-    background: #F0F0F0;
-}
-
-div.note h3.close {
-    position: relative;
-    text-align: right;
-    margin-right: 40px;
-    width: 90%;
-}
-
-#sign_up, #sign_in {
-  position: relative;
-  top: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  height: auto;
-  padding: 30px;
-}
-
-#sign_up {
-  width: 600px;
-}
-
-#sign_in {
-  width: 540px;
-}
-
-
-
-.form {
-  margin-left: auto;
-  margin-right: auto;
-  padding: 30px;
-  padding-bottom: 60px;
-  width: auto;
-  clear: right;
-}
-
-.form table {
-    float: none;
-    width: auto;
-}
-
-.form input[type='submit'] {
-    position: relative;
-    float: right;
-    background: #E0E0E0;
-    padding: 7px 10px;
-    font-size: 13px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -webkit-border-bottom-right-radius: 5px;
-    white-space: nowrap;
-    color: Black;
-    text-shadow: 2px 2px 2px White;
-    text-decoration: none;
-    margin-top: 10px;
-    margin-right: 0px;
-}
-
-.form input[type='submit']:hover {
-    background: #c8d828;
-}
-
-#admin {
-  position: relative;
-  top: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 30px;
-  padding-bottom: 60px;
-  width: 600px;
-  overflow: auto;
-}
-
-#admin #user_table {
-  padding: 30px;
-  position: relative;
-
-}
-
-#admin #user_table table {
-    position: relative;
-    clear: both;
-}
-
-#user_table table tr td {
-    text-align: left;
-}
-
-#user_table table a {
-    color: DarkGray;
-}
-
-#user_table table a:hover {
-    color: #3f9d9b;
-}
-
-#add_user {
-    position: relative;
-    float: right;
-    background: #E0E0E0;
-    padding: 7px 10px;
-    font-size: 13px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    -moz-border-radius-bottomright: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-    -webkit-border-bottom-right-radius: 5px;
-    white-space: nowrap;
-    color: Black;
-    text-shadow: 2px 2px 2px White;
-    text-decoration: none;
-    margin-top: 10px;
-    margin-right: 0px;
-}
-
-#add_user:hover {
-    background: #c8d828;
-}
-
-.tab {
-  display: inline-block;
-  background: #C8C8C8;
-  padding: 9px 15px;
-  font-size: 13px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  -moz-border-radius-topleft: 10px;
-  -moz-border-radius-topright: 10px;
-  -webkit-border-top-left-radius: 10px;
-  -webkit-border-top-right-radius: 10px;
-  white-space: nowrap;
-  vertical-align: bottom;
-  border-top: 1px solid LightGray;
-  border-right: 1px solid DarkGray;
-}
-
-#header_tabs .tab {
-  display: inline-block;
-  background: #C8C8C8;
-  padding: 7px 13px;
-  font-size: 13px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  -moz-border-radius-bottomleft: 10px;
-  -moz-border-radius-bottomright: 10px;
-  -webkit-border-bottom-left-radius: 10px;
-  -webkit-border-bottom-right-radius: 10px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  -moz-border-radius-topleft: 0px;
-  -moz-border-radius-topright: 0px;
-  -webkit-border-top-left-radius: 0px;
-  -webkit-border-top-right-radius: 0px;
-  white-space: nowrap;
-  vertical-align: top;
-  border-bottom: 1px solid DarkGray;
-  border-right: 1px solid DarkGray;
-  -moz-box-shadow: 0px 3px 7px DarkGray;
-  -webkit-box-shadow: 0px 3px 7px DarkGray;
-  box-shadow: 0px 3px 7px DarkGray;
-}
-
-.scroll_tab {
-  display: inline-block;
-  background: #3f9d9b;
-  padding: 9px 15px;
-  font-size: 13px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  -moz-border-radius-topleft: 10px;
-  -moz-border-radius-topright: 10px;
-  -webkit-border-top-left-radius: 10px;
-  -webkit-border-top-right-radius: 10px;
-  vertical-align: bottom;
-   border-top: 1px solid White;
-   border-right: 1px solid DarkGray;
-   border-left: 1px solid White;
-   z-index: 3;
-   color: White;
-}
-
-
-.dummy a {
-    color: transparent;
-}
-
-
-.dummy a:hover {
-    color: transparent;
-}
-
-#header_tabs .tab a {
-  color: Black;
-  text-shadow: 1px 1px 1px White;
-  text-decoration: none;
-}
-
-#header_tabs .tab:hover {
-   background: #c8d828;
-   -moz-box-shadow: 1px -2px 5px DarkGray;
-   -webkit-box-shadow: 1px -2px 5px DarkGray;
-   box-shadow: 1px -2px 5px DarkGray;
-   border-top: 1px solid White;
-   text-shadow: none;
-}
-
-#user {
-    width: 700px;
-    top: 100px;
-    position: relative;
-    padding: 30px;
-}
-
-h2.instructions {
-     position: relative;
-     left: 0px;
-     text-align: left;
-}
-
-h3.instructions {
-     position: relative;
-     left: 0px;
-     text-align: left;
 }
 
 /* MAIN CONTENT STYLES */
@@ -490,9 +160,20 @@ iframe {
     position: relative;
 }
 
+#benchmark-wrapper {
+    position: relative;
+    top: 5px;
+    padding: 30px;
+    padding-top: 20px;
+    height: auto;
+    margin-bottom: 40px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
 #benchmark-table-wrapper {
     position: relative;
-    height: 370px;
+    height: 380px;
     width: auto;
     overflow-x: hidden;
 }
@@ -502,9 +183,10 @@ table#benchmark {
     margin-top: 10px;
     width: auto;
     height: auto;
-    max-height: 380px;
+    max-height: 340px;
     table-layout: fixed;
 }
+
 table#benchmark thead {
     position: relative;
     margin-top: 20px;
@@ -548,7 +230,6 @@ table#benchmark tr td.text {
 table#benchmark tr td.number {
     text-align: right;
 }
-
 
 table#benchmark tr th {
     height: auto;
@@ -620,7 +301,8 @@ table#benchmark tr.My-Company td {
 
 table#filter {
     font-weight: bold;
-    font-size: 130%;
+    font-size: 120%;
+    white-space: nowrap;
 }
 
 
