@@ -8,6 +8,7 @@
     <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
     <%= stylesheet_link_tag 'main' %>
     <%= yield :head %>
+    <title>AMEE | Sector Benchmarking</title>
   </head>
   <body>
     <div id="contentarea">
