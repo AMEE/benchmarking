@@ -74,7 +74,7 @@ class BenchmarkController < ApplicationController
     hash["energyScopeOne"] = { "unit" => "MWh", "value" => session[:settings][:energyScopeOne].blank? ? nil : session[:settings][:energyScopeOne].to_f.round(2) }
     hash["totalFinancialMetricUSD"] = { "value" => session[:settings][:financial_measure].to_f.round(2) }
     if !session[:settings][:massScopeOneCO2e].blank? && !session[:settings][:massScopeTwoCO2e].blank? && !session[:settings][:financial_measure].blank?
-      hash["massCO2ePerUSDFinancialMetric"] = { "unit" => "kg", "value"=> ((session[:settings][:massScopeOneCO2e].to_f+session[:settings][:massScopeTwoCO2e].to_f)/session[:settings][:financial_measure].to_f).round(7) }
+      hash["massCO2ePerUSDFinancialMetric"] = { "unit" => "kg", "value"=> ((session[:settings][:massScopeOneCO2e].to_f+session[:settings][:massScopeTwoCO2e].to_f)*1000/session[:settings][:financial_measure].to_f).round(7) }
     else
       hash["massCO2ePerUSDFinancialMetric"] = ""
     end
