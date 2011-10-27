@@ -66,12 +66,12 @@ class BenchmarkController < ApplicationController
   def append_custom_company_representation
     hash = {}
     hash["company"] = { "value" => "My Company" }
-    hash["massScopeTwoCO2e"] = { "unit" => "t", "value" => (session[:settings][:massScopeTwoCO2e].blank? ? nil : session[:settings][:massScopeTwoCO2e].to_f.round(2)) }
+    hash["massScopeTwoCO2e"] = { "unit" => "t", "value" => (session[:settings][:massScopeTwoCO2e].blank? ? nil : session[:settings][:massScopeTwoCO2e].to_f.round) }
     hash["country"] = { "value" => ""}
     hash["financialMetric"] = { "value" => session[:settings][:financialMetric] }
-    hash["massScopeOneCO2e"] = { "unit" => "t", "value" => (session[:settings][:massScopeOneCO2e].blank? ? nil : session[:settings][:massScopeOneCO2e].to_f.round(2)) }
-    hash["energyScopeTwoTotal"] = { "unit" => "MWh", "value" => session[:settings][:energyScopeTwoTotal].blank? ? nil : session[:settings][:energyScopeTwoTotal].to_f.round(2) }
-    hash["energyScopeOne"] = { "unit" => "MWh", "value" => session[:settings][:energyScopeOne].blank? ? nil : session[:settings][:energyScopeOne].to_f.round(2) }
+    hash["massScopeOneCO2e"] = { "unit" => "t", "value" => (session[:settings][:massScopeOneCO2e].blank? ? nil : session[:settings][:massScopeOneCO2e].to_f.round) }
+    hash["energyScopeTwoTotal"] = { "unit" => "MWh", "value" => session[:settings][:energyScopeTwoTotal].blank? ? nil : session[:settings][:energyScopeTwoTotal].to_f.round }
+    hash["energyScopeOne"] = { "unit" => "MWh", "value" => session[:settings][:energyScopeOne].blank? ? nil : session[:settings][:energyScopeOne].to_f.round }
     hash["totalFinancialMetricUSD"] = { "value" => session[:settings][:financial_measure].to_f.round(2) }
     if !session[:settings][:massScopeOneCO2e].blank? && !session[:settings][:massScopeTwoCO2e].blank? && !session[:settings][:financial_measure].blank?
       hash["massCO2ePerUSDFinancialMetric"] = { "unit" => "kg", "value"=> ((session[:settings][:massScopeOneCO2e].to_f+session[:settings][:massScopeTwoCO2e].to_f)*1000/session[:settings][:financial_measure].to_f).round(7) }
@@ -86,13 +86,13 @@ class BenchmarkController < ApplicationController
     @sector_average = true
     hash = {}
     hash["company"] = { "value" => "Sector average" }
-    hash["massScopeTwoCO2e"] = { "unit" => "t", "value" => (@items.inject(0.0) { |sum, item| sum + item['massScopeTwoCO2e']['value'].to_f }/@items.size.to_f).round(2) }
+    hash["massScopeTwoCO2e"] = { "unit" => "t", "value" => (@items.inject(0.0) { |sum, item| sum + item['massScopeTwoCO2e']['value'].to_f }/@items.size.to_f).round }
     hash["country"] = { "value" => ""}
     hash["financialMetric"] = { "value" => session[:settings][:financialMetric] }
-    hash["massScopeOneCO2e"] = { "unit" => "t", "value" => (@items.inject(0.0) { |sum, item| sum + item['massScopeOneCO2e']['value'].to_f }/@items.size.to_f).round(2) }
-    hash["energyScopeTwoTotal"] = { "unit" => "MWh", "value" => (@items.inject(0.0) { |sum, item| sum + item['energyScopeTwoTotal']['value'].to_f }/@items.size.to_f).round(2) }
-    hash["energyScopeTwoElectricity"] = { "unit" => "MWh", "value" => (@items.inject(0.0) { |sum, item| sum + item['energyScopeTwoElectricity']['value'].to_f }/@items.size.to_f).round(2) }
-    hash["energyScopeOne"] = { "unit" => "MWh", "value" => (@items.inject(0.0) { |sum, item| sum + item['energyScopeOne']['value'].to_f }/@items.size.to_f).round(2) }
+    hash["massScopeOneCO2e"] = { "unit" => "t", "value" => (@items.inject(0.0) { |sum, item| sum + item['massScopeOneCO2e']['value'].to_f }/@items.size.to_f).round }
+    hash["energyScopeTwoTotal"] = { "unit" => "MWh", "value" => (@items.inject(0.0) { |sum, item| sum + item['energyScopeTwoTotal']['value'].to_f }/@items.size.to_f).round }
+    hash["energyScopeTwoElectricity"] = { "unit" => "MWh", "value" => (@items.inject(0.0) { |sum, item| sum + item['energyScopeTwoElectricity']['value'].to_f }/@items.size.to_f).round }
+    hash["energyScopeOne"] = { "unit" => "MWh", "value" => (@items.inject(0.0) { |sum, item| sum + item['energyScopeOne']['value'].to_f }/@items.size.to_f).round }
     hash["totalFinancialMetricUSD"] = { "value" => (@items.inject(0.0) { |sum, item| sum + item['totalFinancialMetricUSD']['value'].to_f }/@items.size.to_f).round(2) }
     hash["massCO2ePerUSDFinancialMetric"] = { "unit" => "kg", "value"=> "" }
     hash["sector"] = {"value"=> session[:settings][:sector] }
