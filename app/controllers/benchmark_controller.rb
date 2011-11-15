@@ -116,7 +116,7 @@ class BenchmarkController < ApplicationController
     if valid_selections?
       @items = get_company_data(options_for_company_data_get)
     else
-      @items = Rails.cache.read('all_company_data')
+      @items = YAML.load_file("#{Rails.root}/config/data.yml")
     end
   end
 
@@ -270,8 +270,8 @@ class BenchmarkController < ApplicationController
   end
 
   def auth_credentials
-    { :username => $AMEE_CONFIG['username'],
-      :password => $AMEE_CONFIG['password'] }
+    { :username => ENV['AMEE_USERNAME'],
+      :password => ENV['AMEE_PASSWORD'] }
   end
 
   IGNORED_ATTRIBUTES = [ "energyScopeTwoCooling",
