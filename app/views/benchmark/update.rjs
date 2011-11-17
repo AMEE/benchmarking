@@ -1,6 +1,0 @@
-page.replace_html 'benchmark-table-wrapper', :partial => 'company_table'
-page.replace_html 'chart', :partial => 'chart'
-page << "manageTableStyle()"
-if @sector_average
-  page << "manageAddedRows()"
-end

@@ -1,0 +1,5 @@
+<% if @chart %>
+  <%= @chart.to_js('chart').html_safe %>
+<% else %>
+  <%= image_tag "AMEE-Logo2011-LINE_Green.png" %>
+<% end %>

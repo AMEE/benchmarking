@@ -1,0 +1,15 @@
+<%= render :partial => 'benchmark_scripts' %>
+<div id="upper-pane">
+  <%= render :partial => 'benchmark_panel' %>
+</div>
+<div id="benchmark-wrapper" class="content_pane">
+  <div id="benchmark-table-wrapper">
+    <% if @items %>
+      <%= render :partial => 'company_table' %>
+    <% else %>
+      <%= image_tag 'AMEE-bug-ref_125x125.png', :alt => 'AMEE' %>
+    <% end %>
+  </div>
+</div>
+<br/>
+<br/>

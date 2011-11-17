@@ -1,0 +1,6 @@
+$('#benchmark-table-wrapper').html('<%= escape_javascript(render :partial => 'company_table') %>');
+$('#chart').html('<%= escape_javascript(render :partial => 'chart') %>');
+manageTableStyle();
+<% if @sector_average %>
+  manageAddedRows();
+<% end %>

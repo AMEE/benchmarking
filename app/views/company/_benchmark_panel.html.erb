@@ -1,0 +1,44 @@
+<div  id="benchmark-form-wrapper" class="content_pane">
+    <%= form_tag(benchmark_path, :method => 'get') do %>
+    <table>
+      <tr class="benchmark-select">
+        <td>Choose a sector</td>
+        <td><%= select_tag 'sector', options_for_select(@sector_list.reject {|s| s == 'All'}, session[:settings][:sector]) %></td>
+      </tr>
+      <tr class="benchmark-text">
+        <td>Set scope 1 emissions</td>
+        <td><span><%= text_field_tag 'scope1_emissions', session[:settings][:massScopeOneCO2e] %></span><span> Metric tonnes (t)</span></td>
+      </tr>
+      <tr class="benchmark-text">
+        <td>Set scope 2 emissions</td>
+        <td><span><%= text_field_tag 'scope2_emissions', session[:settings][:massScopeTwoCO2e] %></span><span> Metric tonnes (t)</span></td>
+      </tr>
+      <tr class="benchmark-text">
+        <td>Set scope 1 energy consumption</td>
+        <td><span><%= text_field_tag 'scope1_energy', session[:settings][:energyScopeOne] %></span><span> Megawatt hours (MWh)</span></td>
+      </tr>
+      <tr class="benchmark-text">
+        <td>Set scope 2 energy consumption</td>
+        <td><span><%= text_field_tag 'scope2_energy', session[:settings][:energyScopeTwoTotal] %></span><span> Megawatt hours (MWh)</span></td>
+      </tr>
+      <tr class="benchmark-select">
+        <td>Choose a financial metric</td>
+        <td><%= select_tag 'financialMetric', options_for_select(@financial_metric_list.reject {|s| s == 'All'}, session[:settings][:financialMetric] || 'Revenue') %></td>
+      </tr>
+      <tr class="benchmark-text">
+        <td>Set a financial benchmark</td>
+        <td><span><%= text_field_tag 'financial_measure', session[:settings][:financial_measure] %></span><span> USD ($)</span></td>
+      </tr>
+      <tr class="benchmark-text">
+        <td>Normalize grid electricity</td>
+        <td><%= select_tag 'country_for_grid_normalization', options_for_select(@country_list_for_grid_normalization,session[:settings][:country_for_grid_normalization] || 'None') %></td>
+      </tr>
+    </table>
+    <div id="benchmark-submit">
+      <%= submit_tag 'Benchmark!' %>
+    </div>
+    <% end %>
+  </div>
+  <div id="chart" class="content_pane">
+    <%= render :partial => 'chart' %>
+  </div>

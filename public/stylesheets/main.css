@@ -22,18 +22,67 @@ body {
     position: fixed;
     top: 0px;
     width: 100%;
-    background: #F8F8F8;
-    height: 0px;
+    background-color: #5e5e5e;
+    background-image: -moz-linear-gradient(center top, #808080, #5e5e5e);
+    background-image: -webkit-gradient(linear, center top, center bottom, from(#808080), to(#5e5e5e));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#808080', endColorstr='#5e5e5e');
+    height: auto;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 160%;
-    color: #0B7883;
-    text-shadow: 2px 2px 2px LightGray;
-    font-weight: bold;
+    font-size: 100%;
+    color: #F0F0F0  ;
     z-index: 3;
+    -moz-box-shadow: 0px 5px 5px DarkGray;
+    -webkit-box-shadow: 0px 5px 5px DarkGray;
+    box-shadow: 0px 5px 5px DarkGray;
+    vertical-align: middle;
 }
 
-a {
+#banner {
+    margin-left: 10px;
+    font-size: 130%;
+    vertical-align: middle;
+}
+
+#header-link-wrapper {
+  margin-left: 8px;
+  display: inline-block;
+}
+.header-link {
+    position: relative;
+    background: inherit;
+    padding: 0px 5px;
+    display: inline-block;
+    margin: 8px 2px;
+    vertical-align: middle;
+}
+
+#header div a {
+  color: White;/*#F0F0F0  ;*/
   text-decoration: none;
+  padding: 0px 7px;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+.header-highlight {
+    background-color: Gainsboro;
+    background-image: -moz-linear-gradient(center top, #808080, #B0B0B0 );
+    background-image: -webkit-gradient(linear, center top, center bottom, from(#808080), to(#B0B0B0));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#808080', endColorstr='#B0B0B0');
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    border-top: 1px solid #707070;
+    border-bottom: 1px solid #C0C0C0;
 }
 
 /* MAIN CONTENT STYLES */
@@ -67,10 +116,6 @@ a img {
     border-width: 0px;
 }
 
-a {
-    color: black;
-}
-
 img {
     vertical-align: middle;
 }
@@ -82,7 +127,7 @@ div#contentarea {
     margin-right: auto;
     width: 1620px;
     position: relative;
-    top: 25px;
+    top: 60px;
 }
 
 .content_pane {
@@ -160,20 +205,24 @@ iframe {
     position: relative;
 }
 
+tr.benchmark-text td {
+    whitespace: nowrap;
+}
+
 #benchmark-wrapper {
     position: relative;
     top: 5px;
     padding: 30px;
     padding-top: 20px;
     height: auto;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     margin-top: 15px;
     margin-left: 15px;
 }
 
 #benchmark-table-wrapper {
     position: relative;
-    height: 380px;
+    height: 360px;
     width: auto;
     overflow-x: hidden;
 }
@@ -189,7 +238,7 @@ table#benchmark {
 
 table#benchmark thead {
     position: relative;
-    margin-top: 20px;
+    margin-top: 0px;
     left: 0px;
     width: auto;
     height: 45px;
@@ -201,10 +250,10 @@ table#benchmark thead {
 
 table#benchmark tbody {
     position: absolute;
-    top: 100px;
+    top: 70px;
     left: 0px;
     height: auto;
-    max-height: 270px;
+    max-height: 280px;
     width: auto;
     overflow-y: auto;
 }
@@ -299,12 +348,15 @@ table#benchmark tr.My-Company td {
     color: White
 }
 
-table#filter {
+table#filter, table#search {
     font-weight: bold;
     font-size: 120%;
     white-space: nowrap;
 }
 
+#q {
+    width: 100%;
+}
 
 
 table {
@@ -349,7 +401,10 @@ td select:hover, input:hover {
 
 th {
     text-align: centre;
-    background: Gainsboro;
+    background-color: Gainsboro;
+    background-image: -moz-linear-gradient(center top, #F0F0F0, Gainsboro);
+    background-image: -webkit-gradient(linear, center top, center bottom, from(#F0F0F0), to(Gainsboro));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F0F0F0', endColorstr='Gainsboro');
     text-shadow: 2px 2px 2px White;
     
 }
@@ -387,7 +442,10 @@ div.clear {
 
 #benchmark-form-wrapper form input[type='submit'] {
     position: relative;
-    background: #E0E0E0;
+    background-color: Gainsboro;
+    background-image: -moz-linear-gradient(center top, #F0F0F0, Gainsboro);
+    background-image: -webkit-gradient(linear, center top, center bottom, from(#F0F0F0), to(Gainsboro));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F0F0F0', endColorstr='Gainsboro');
     padding: 5px 10px;
     font-size: 13px;
     border-top-left-radius: 5px;

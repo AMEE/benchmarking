@@ -1,0 +1,107 @@
+<% content_for :head do %>
+
+<script src='http://www.google.com/jsapi'></script>
+
+  <%= javascript_tag do %>
+
+    $(document).ready(function(){
+
+      filters$ = $("table#filter td select");
+      
+      filters$.live('change', function(){
+        tableLoading();
+        updateTableAndChart($(this).attr('id') + "=" + $(this).attr('value').replace(/&/g, "%26"));
+      });
+
+      $('#q').live('keyup', function(){
+        query = "q=" + $(this).attr('value').replace(/&/g, "%26");
+        // Use timer property to ensure multiple requests are not made in quick succession
+        var timer = $(this).data('timer');
+        if(timer) {
+          clearTimeout(timer);
+        }
+        tableLoading();
+        $(this).data('timer', setTimeout("updateTableAndChart(query);", 300));
+        
+      });
+
+      manageTableStyle();
+      manageAddedRows();
+
+    });
+
+    function tableLoading() {
+      row$ = $("table#benchmark tbody tr:first");
+      rows$ = $("table#benchmark tbody").children("tr:gt(0)");
+      cells$ = row$.children("td").not(".dummy");
+
+      rows$.remove();
+      $("table#benchmark th.dummy").width("0px");
+
+      renderLoadingGif(cells$);
+    }
+
+    function updateTableAndChart(query) {
+      jQuery.ajax({
+        data:     query,
+        dataType: 'script',
+        type:     'post',
+        url:      '/company/update'
+      });
+    }
+
+    function manageTableStyle() {
+      tableRowBackgroundColor($("table#benchmark tbody tr:odd"), '#f0f0ff');
+      tableRowBackgroundColor($("table#benchmark tbody tr:even"), 'White');
+
+      tableHeaderWidth();
+
+    }
+
+    function manageAddedRows() {
+      $("table#benchmark tbody tr#my-company").children("td").each(function(){
+          $(this).css('background',"#33CC66").css('color', 'White');
+      });
+
+      $("table#benchmark tbody tr#sector-average").children("td").each(function(){
+          $(this).css('background',"#5e5e5e").css('color', 'White');
+      });
+
+      scrollToCompany("my-company");
+    }
+
+    function scrollToCompany(name) {
+      container = $("table#benchmark tbody");
+      height = container.height();
+      contentHeight = container.prop('scrollHeight');
+      if (contentHeight > height) {
+        row = $("table#benchmark tbody tr#"+name);
+        position = row.position();
+        if (typeof(position) != 'undefined') {
+          container.animate({scrollTop: position.top-(height/2)}, 2000);
+        }
+      }
+    }
+
+    function tableRowBackgroundColor(rows,color) {
+      $(rows).each(function() {
+        cells$ = $(this).children("td");
+        cells$.each(function(){
+          $(this).css('background',color);
+        });
+      });
+    }
+
+    function tableHeaderWidth() {
+      tableBody$ = $("table#benchmark > tbody");
+      dummyCell$ = $("table#benchmark th.dummy");
+      if (tableBody$.height() == 280) {
+        dummyCell$.width("28px");
+      } else {
+        dummyCell$.width("0px");
+      }
+
+    }
+
+  <% end %>    
+<% end %>

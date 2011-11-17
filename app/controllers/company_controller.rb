@@ -2,7 +2,7 @@ require 'pp'
 require "rexml/document"
 require 'ihsh'
 
-class BenchmarkController < ApplicationController
+class CompanyController < ApplicationController
 
   before_filter :companies
 
@@ -23,26 +23,32 @@ class BenchmarkController < ApplicationController
     @grid_normalized = false
     @sector_average = false
     initialize_lists
-    initialize_settings(params)
-    initialize_data
-    unless session[:settings][:financial_measure].blank?
-      @normalized = true
-      normalize_data if @items.size > 0
-    end
-    if @items.size > 0 && !session[:settings][:sector].blank?
-      append_average_sector_representation
-    end
-    if !session[:settings][:massScopeOneCO2e].blank? || !session[:settings][:massScopeTwoCO2e].blank? ||
-         !session[:settings][:energyScopeOne].blank? || !session[:settings][:energyScopeTwoTotal].blank?
-      append_custom_company_representation  if @items.size > 0
-    end
-    if !session[:settings][:country_for_grid_normalization].blank?
-      @grid_normalized = true
-      normalize_grid
-    end
-    if valid_selections? && @items.size > 0
-      sort_data
-      column_chart
+    if params[:q]
+      @items = @companies.find_all {|company| company['company']['value'].downcase =~ /\A#{params[:q].downcase}/}
+      # Don't display chart if no items or all items
+      column_chart unless @items.empty? || @items.size == @companies.size
+    else
+      initialize_settings(params)
+      initialize_data
+      unless session[:settings][:financial_measure].blank?
+        @normalized = true
+        normalize_data if @items.size > 0
+      end
+      if @items.size > 0 && !session[:settings][:sector].blank?
+        append_average_sector_representation
+      end
+      if !session[:settings][:massScopeOneCO2e].blank? || !session[:settings][:massScopeTwoCO2e].blank? ||
+           !session[:settings][:energyScopeOne].blank? || !session[:settings][:energyScopeTwoTotal].blank?
+        append_custom_company_representation  if @items.size > 0
+      end
+      if !session[:settings][:country_for_grid_normalization].blank?
+        @grid_normalized = true
+        normalize_grid
+      end
+      if valid_selections? && @items.size > 0
+        sort_data
+        column_chart
+      end
     end
   end
 
@@ -223,10 +229,15 @@ class BenchmarkController < ApplicationController
       end
     end
 
-    if @grid_normalized
-      title = 'Scopes 1 and 2 (electricity only) emissions by company'
+
+    if @normalized && @grid_normalized
+      title = "Scopes 1 and 2 emissions normalized to company #{session[:settings][:financialMetric].downcase} and grid intensity"
+    elsif @grid_normalized
+      title = "Scopes 1 and 2 emissions normalized to grid intensity"
+    elsif @normalized
+      title = "Scopes 1 and 2 emissions normalized to company #{session[:settings][:financialMetric].downcase}"
     else
-      title = 'Total scopes 1 and 2 emissions by company'
+      title = "Disclosed scopes 1 and 2 emissions by company"
     end
 
     opts = { :width => 980,
@@ -277,7 +288,7 @@ class BenchmarkController < ApplicationController
   end
 
   def connection
-    AMEE::Connection.new(ENV['AMEE_SERVER'], ENV['AMEE_USERNAME'], ENV['AMEE_PASSWORD'])#AMEE::Rails.connection
+    AMEE::Connection.new(ENV['AMEE_SERVER'], ENV['AMEE_USERNAME'], ENV['AMEE_PASSWORD'])
   end
 
   def auth_credentials

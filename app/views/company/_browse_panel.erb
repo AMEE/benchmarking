@@ -1,0 +1,31 @@
+<div  id="benchmark-form-wrapper" class="content_pane">
+  <table id="filter">
+    <tr>
+      <td>Filter by:</td>
+    </tr>
+    <tr>
+      <td>Sector:</td><td> <%= select_tag 'sector', options_for_select(@sector_list, session[:settings][:sector] || "All") %></td>
+    </tr>
+    <tr>
+      <td>Country:</td><td> <%= select_tag 'country', options_for_select(@country_list, session[:settings][:country] || "All") %></td>
+    </tr>
+    <tr>
+      <td>Financial metric:</td><td> <%= select_tag 'financialMetric', options_for_select(@financial_metric_list, session[:settings][:financialMetric] || "All") %></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Search</td><td style="color: LightGray">start typing . . .</td>
+    </tr>
+    <tr>
+      <td>Company:</td><td><%= text_field_tag 'q' %></td>
+    </tr>
+  </table>
+</div>
+<div id="chart" class="content_pane">
+  <%= render :partial => 'chart' %>
+</div>
