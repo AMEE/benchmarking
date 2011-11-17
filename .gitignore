@@ -3,3 +3,4 @@ nbproject/
 vendor/plugins/Link to amee-data-persistence
 config/database.yml
 *.log
+Gemfile.lock
