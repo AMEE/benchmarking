@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/spatchcock/google_visualr.git
+  revision: 695b212ada5c9a06dae75bef6ed56bc8700f3d0e
+  specs:
+    google_visualr (2.1.0)
+
 GEM
   remote: http://rubygems.org/
   remote: http://amee:aeC5ahx4@gems.amee.com/
@@ -38,7 +44,6 @@ GEM
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    google_visualr (2.0.6)
     i18n (0.5.0)
     json (1.6.1)
     log4r (1.1.9)
@@ -87,7 +92,7 @@ PLATFORMS
 
 DEPENDENCIES
   amee (~> 4.0.0)
-  google_visualr (= 2.0.6)
+  google_visualr!
   quantify (= 3.0.0)
   rails (= 3.0.10)
   sqlite3
