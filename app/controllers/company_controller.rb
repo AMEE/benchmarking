@@ -339,7 +339,7 @@ class CompanyController < ApplicationController
                    "USA" ]
 
   SECTOR_LIST = [ "All",
-    "             Advertising",
+                  "Advertising",
                   "Aerospace & Defense",
                   "Agricultural Products",
                   "Air Freight & Logistics",
