@@ -810,36 +810,6 @@
   sector: 
     value: Diversified Chemicals
 - company: 
-    value: Alcatel - Lucent
-  massScopeTwoCO2e: 
-    unit: t
-    value: "602686"
-  country: 
-    value: France
-  financialMetric: 
-    value: Revenue
-  massScopeOneCO2e: 
-    unit: t
-    value: "170130"
-  energyScopeTwoTotal: 
-    unit: MWh
-    value: "1245518"
-  energyScopeOne: 
-    unit: MWh
-    value: "735332"
-  totalFinancialMetricUSD: 
-    value: "1324503.31125828"
-  energyScopeTwoElectricity: 
-    unit: MWh
-    value: "1195026"
-  source: 
-    value: CDP 2009
-  massCO2ePerUSDFinancialMetric: 
-    unit: kg
-    value: "583.47608"
-  sector: 
-    value: Communications Equipment
-- company: 
     value: Alcoa Inc.
   massScopeTwoCO2e: 
     unit: t
@@ -1649,36 +1619,6 @@
     value: "0.505"
   sector: 
     value: Specialized Finance
-- company: 
-    value: Atea ASA
-  massScopeTwoCO2e: 
-    unit: t
-    value: "4343"
-  country: 
-    value: Norway
-  financialMetric: 
-    value: EBITDA
-  massScopeOneCO2e: 
-    unit: t
-    value: "4455"
-  energyScopeTwoTotal: 
-    unit: MWh
-    value: "38717"
-  energyScopeOne: 
-    unit: MWh
-    value: "17366"
-  totalFinancialMetricUSD: 
-    value: "2424.0921364413"
-  energyScopeTwoElectricity: 
-    unit: MWh
-    value: "17806"
-  source: 
-    value: CDP 2009
-  massCO2ePerUSDFinancialMetric: 
-    unit: kg
-    value: "3629.4"
-  sector: 
-    value: IT Consulting & Other Services
 - company: 
     value: Atlantia
   massScopeTwoCO2e: 
@@ -2538,7 +2478,7 @@
     unit: MWh
     value: "0"
   totalFinancialMetricUSD: 
-    value: "1545.5950540958"
+    value: "90397218.3000605"
   energyScopeTwoElectricity: 
     unit: MWh
     value: "12859"
@@ -2546,7 +2486,7 @@
     value: CDP 2009
   massCO2ePerUSDFinancialMetric: 
     unit: kg
-    value: "4661.635"
+    value: "0.07970378"
   sector: 
     value: Specialized REIT's
 - company: 
@@ -3138,7 +3078,7 @@
     unit: MWh
     value: "1568"
   totalFinancialMetricUSD: 
-    value: "15"
+    value: "15000000"
   energyScopeTwoElectricity: 
     unit: MWh
     value: "253"
@@ -3146,7 +3086,7 @@
     value: CDP 2009
   massCO2ePerUSDFinancialMetric: 
     unit: kg
-    value: "36400"
+    value: "0.0364"
   sector: 
     value: Packaged Foods & Meats
 - company: 
@@ -5100,36 +5040,6 @@
   sector: 
     value: Electronic Components
 - company: 
-    value: Dentsu Inc.
-  massScopeTwoCO2e: 
-    unit: t
-    value: "22493"
-  country: 
-    value: Japan
-  financialMetric: 
-    value: Revenue
-  massScopeOneCO2e: 
-    unit: t
-    value: "0"
-  energyScopeTwoTotal: 
-    unit: MWh
-    value: "66559"
-  energyScopeOne: 
-    unit: MWh
-    value: "0"
-  totalFinancialMetricUSD: 
-    value: "15064.7012610735"
-  energyScopeTwoElectricity: 
-    unit: MWh
-    value: "39072"
-  source: 
-    value: CDP 2009
-  massCO2ePerUSDFinancialMetric: 
-    unit: kg
-    value: "1493.093"
-  sector: 
-    value: Advertising
-- company: 
     value: "Deutsche B\xC3\xB6rse AG"
   massScopeTwoCO2e: 
     unit: t
@@ -6258,7 +6168,7 @@
     unit: MWh
     value: "934727"
   totalFinancialMetricUSD: 
-    value: "1797539754.36328"
+    value: "2046748218.80704"
   energyScopeTwoElectricity: 
     unit: MWh
     value: "2173587"
@@ -6266,7 +6176,7 @@
     value: CDP 2009
   massCO2ePerUSDFinancialMetric: 
     unit: kg
-    value: "1.547"
+    value: "1.35864"
   sector: 
     value: Diversified Metals & Mining
 - company: 
@@ -6390,36 +6300,6 @@
   sector: 
     value: Paper Products
 - company: 
-    value: Filtrona
-  massScopeTwoCO2e: 
-    unit: t
-    value: "53430"
-  country: 
-    value: United Kingdom
-  financialMetric: 
-    value: Revenue
-  massScopeOneCO2e: 
-    unit: t
-    value: "8316"
-  energyScopeTwoTotal: 
-    unit: MWh
-    value: "85376"
-  energyScopeOne: 
-    unit: MWh
-    value: "45929"
-  totalFinancialMetricUSD: 
-    value: "1545595.05409583"
-  energyScopeTwoElectricity: 
-    unit: MWh
-    value: "85376"
-  source: 
-    value: CDP 2009
-  massCO2ePerUSDFinancialMetric: 
-    unit: kg
-    value: "39.949662"
-  sector: 
-    value: Commodity Chemicals
-- company: 
     value: FirstEnergy Corporation
   massScopeTwoCO2e: 
     unit: t
@@ -6509,36 +6389,6 @@
     value: "0.00906364"
   sector: 
     value: Health Care Equipment
-- company: 
-    value: FLSmidth & Co. A/S
-  massScopeTwoCO2e: 
-    unit: t
-    value: "51000"
-  country: 
-    value: Denmark
-  financialMetric: 
-    value: EBITDA
-  massScopeOneCO2e: 
-    unit: t
-    value: "22000"
-  energyScopeTwoTotal: 
-    unit: MWh
-    value: "108000"
-  energyScopeOne: 
-    unit: MWh
-    value: "103600"
-  totalFinancialMetricUSD: 
-    value: "177872.643187478"
-  energyScopeTwoElectricity: 
-    unit: MWh
-    value: "92000"
-  source: 
-    value: CDP 2009
-  massCO2ePerUSDFinancialMetric: 
-    unit: kg
-    value: "410.406"
-  sector: 
-    value: Construction & Engineering
 - company: 
     value: Ford Motor Company
   massScopeTwoCO2e: 
@@ -7559,36 +7409,6 @@
     value: "0.0581"
   sector: 
     value: Pharmaceuticals
-- company: 
-    value: Hitachi Chemical Company, Ltd.
-  massScopeTwoCO2e: 
-    unit: t
-    value: "222514"
-  country: 
-    value: Japan
-  financialMetric: 
-    value: Revenue
-  massScopeOneCO2e: 
-    unit: t
-    value: "111319"
-  energyScopeTwoTotal: 
-    unit: MWh
-    value: "529899"
-  energyScopeOne: 
-    unit: MWh
-    value: "0"
-  totalFinancialMetricUSD: 
-    value: "11385.7609673343"
-  energyScopeTwoElectricity: 
-    unit: MWh
-    value: "529899"
-  source: 
-    value: CDP 2009
-  massCO2ePerUSDFinancialMetric: 
-    unit: kg
-    value: "29320.218557"
-  sector: 
-    value: Commodity Chemicals
 - company: 
     value: Hitachi
   massScopeTwoCO2e: 
@@ -8718,7 +8538,7 @@
     unit: MWh
     value: "15299"
   totalFinancialMetricUSD: 
-    value: "1318444.66600199"
+    value: "3315899950.89339"
   energyScopeTwoElectricity: 
     unit: MWh
     value: "119990"
@@ -8726,7 +8546,7 @@
     value: CDP 2009
   massCO2ePerUSDFinancialMetric: 
     unit: kg
-    value: "50.15"
+    value: "0.019940288"
   sector: 
     value: Communications Equipment
 - company: 
@@ -8928,7 +8748,7 @@
     unit: MWh
     value: "16856891"
   totalFinancialMetricUSD: 
-    value: "3608007.37225387"
+    value: "3608007372.25387"
   energyScopeTwoElectricity: 
     unit: MWh
     value: "5426126"
@@ -8936,7 +8756,7 @@
     value: CDP 2009
   massCO2ePerUSDFinancialMetric: 
     unit: kg
-    value: "1557.19"
+    value: "1.55719"
   sector: 
     value: Personal Products
 - company: 
@@ -10649,36 +10469,6 @@
     value: "0.097"
   sector: 
     value: Life Sciences Tools & Services
-- company: 
-    value: Mitac International
-  massScopeTwoCO2e: 
-    unit: t
-    value: "61246"
-  country: 
-    value: Taiwan
-  financialMetric: 
-    value: Revenue
-  massScopeOneCO2e: 
-    unit: t
-    value: "5961"
-  energyScopeTwoTotal: 
-    unit: MWh
-    value: "46487"
-  energyScopeOne: 
-    unit: MWh
-    value: "399"
-  totalFinancialMetricUSD: 
-    value: "1251993293.59165"
-  energyScopeTwoElectricity: 
-    unit: MWh
-    value: "46487"
-  source: 
-    value: CDP 2009
-  massCO2ePerUSDFinancialMetric: 
-    unit: kg
-    value: "0.05368"
-  sector: 
-    value: Computer Hardware
 - company: 
     value: MITIE Group
   massScopeTwoCO2e: 
@@ -14058,7 +13848,7 @@
     unit: MWh
     value: "5959507"
   totalFinancialMetricUSD: 
-    value: "6005224.63768116"
+    value: "6005224637.68116"
   energyScopeTwoElectricity: 
     unit: MWh
     value: "18234"
@@ -14066,7 +13856,7 @@
     value: CDP 2009
   massCO2ePerUSDFinancialMetric: 
     unit: kg
-    value: "690"
+    value: "0.69"
   sector: 
     value: Hotels, Resorts & Cruise Lines
 - company: 
@@ -14339,36 +14129,6 @@
     value: "0.0138140874"
   sector: 
     value: Trading Companies & Distributors
-- company: 
-    value: Samsung Electro-Mechanics Co., Ltd.
-  massScopeTwoCO2e: 
-    unit: t
-    value: "501808"
-  country: 
-    value: South Korea
-  financialMetric: 
-    value: Revenue
-  massScopeOneCO2e: 
-    unit: t
-    value: "58546"
-  energyScopeTwoTotal: 
-    unit: MWh
-    value: "1081476"
-  energyScopeOne: 
-    unit: MWh
-    value: "225958"
-  totalFinancialMetricUSD: 
-    value: "478333.352525716"
-  energyScopeTwoElectricity: 
-    unit: MWh
-    value: "987570"
-  source: 
-    value: CDP 2009
-  massCO2ePerUSDFinancialMetric: 
-    unit: kg
-    value: "1171.47173"
-  sector: 
-    value: Semiconductors
 - company: 
     value: Samsung Electronics
   massScopeTwoCO2e: 
@@ -14988,7 +14748,7 @@
     unit: MWh
     value: "1205739"
   totalFinancialMetricUSD: 
-    value: "7099567.56756757"
+    value: "7099567567.56757"
   energyScopeTwoElectricity: 
     unit: MWh
     value: "0"
@@ -14996,7 +14756,7 @@
     value: CDP 2009
   massCO2ePerUSDFinancialMetric: 
     unit: kg
-    value: "74"
+    value: "0.074"
   sector: 
     value: Home Improvement Retail
 - company: 
@@ -15870,7 +15630,7 @@
   sector: 
     value: Systems Software
 - company: 
-    value: T.SINA? KALKINMA BANKASI A.?.
+    value: T.SINAI KALKINMA BANKASI A.I.
   massScopeTwoCO2e: 
     unit: t
     value: "310"
@@ -16227,36 +15987,6 @@
   massCO2ePerUSDFinancialMetric: 
     unit: kg
     value: "0.0151389"
-  sector: 
-    value: Integrated Telecommunication Services
-- company: 
-    value: Telus Corporation
-  massScopeTwoCO2e: 
-    unit: t
-    value: "256530"
-  country: 
-    value: Canada
-  financialMetric: 
-    value: Revenue
-  massScopeOneCO2e: 
-    unit: t
-    value: "78165"
-  energyScopeTwoTotal: 
-    unit: MWh
-    value: "678108"
-  energyScopeOne: 
-    unit: MWh
-    value: "0"
-  totalFinancialMetricUSD: 
-    value: "2951194.78000176"
-  energyScopeTwoElectricity: 
-    unit: MWh
-    value: "678108"
-  source: 
-    value: CDP 2009
-  massCO2ePerUSDFinancialMetric: 
-    unit: kg
-    value: "113.41"
   sector: 
     value: Integrated Telecommunication Services
 - company: 
@@ -16769,36 +16499,6 @@
     value: "0.025775"
   sector: 
     value: Distributors
-- company: 
-    value: Toto Ltd.
-  massScopeTwoCO2e: 
-    unit: t
-    value: "142945"
-  country: 
-    value: Japan
-  financialMetric: 
-    value: Revenue
-  massScopeOneCO2e: 
-    unit: t
-    value: "133721"
-  energyScopeTwoTotal: 
-    unit: MWh
-    value: "261786"
-  energyScopeOne: 
-    unit: MWh
-    value: "671561"
-  totalFinancialMetricUSD: 
-    value: "480337.441870768"
-  energyScopeTwoElectricity: 
-    unit: MWh
-    value: "261786"
-  source: 
-    value: CDP 2009
-  massCO2ePerUSDFinancialMetric: 
-    unit: kg
-    value: "575.982582"
-  sector: 
-    value: Building Products
 - company: 
     value: Toyobo Co., Ltd.
   massScopeTwoCO2e: 
