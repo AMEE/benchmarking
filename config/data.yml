@@ -4440,36 +4440,6 @@
   sector: 
     value: Paper Packaging
 - company: 
-    value: Cousin Corporation of America
-  massScopeTwoCO2e: 
-    unit: t
-    value: "310"
-  country: 
-    value: USA
-  financialMetric: 
-    value: Revenue
-  massScopeOneCO2e: 
-    unit: t
-    value: "11"
-  energyScopeTwoTotal: 
-    unit: MWh
-    value: "513"
-  energyScopeOne: 
-    unit: MWh
-    value: "0"
-  totalFinancialMetricUSD: 
-    value: "0.906779661"
-  energyScopeTwoElectricity: 
-    unit: MWh
-    value: "513"
-  source: 
-    value: CDP 2009
-  massCO2ePerUSDFinancialMetric: 
-    unit: kg
-    value: "354000"
-  sector: 
-    value: To be categorized
-- company: 
     value: Covanta Energy Corporation
   massScopeTwoCO2e: 
     unit: t
