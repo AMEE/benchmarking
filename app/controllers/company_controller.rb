@@ -164,7 +164,7 @@ class CompanyController < ApplicationController
 
   def get_xml(options)
     http_options = auth_credentials.merge(:accept => "application/xml")
-    url = "https://platform-api-science.amee.com/3/categories/CDP_emissions_and_financial_metrics/items;full#{querify(options) if options}"
+    url = "https://platform-api-#{ENV['AMEE_SERVER']}/3/categories/CDP_emissions_and_financial_metrics/items;full#{querify(options) if options}"
     xml = ::Ihsh.get(url, http_options)
     return xml
   end
