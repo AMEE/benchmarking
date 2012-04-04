@@ -1,5 +1,5 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
+# Copyright (C) 2011 AMEE UK Ltd. - http://www.amee.com
+# Released as Open Source Software under the BSD 3-Clause license. See LICENSE.txt for details.
 
 class ApplicationController < ActionController::Base
   

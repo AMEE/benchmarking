@@ -1,3 +1,6 @@
+# Copyright (C) 2011 AMEE UK Ltd. - http://www.amee.com
+# Released as Open Source Software under the BSD 3-Clause license. See LICENSE.txt for details.
+
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
@@ -38,9 +41,6 @@ module BenchmarkingDemo
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-
-    # Load chache of all companies
-    $company_cache = YAML.load_file("#{Rails.root}/config/data.yml")
 
     require 'amee/v3'
     

@@ -1,11 +1,10 @@
+# Copyright (C) 2011 AMEE UK Ltd. - http://www.amee.com
+# Released as Open Source Software under the BSD 3-Clause license. See LICENSE.txt for details.
+
 class CompanySet
 
   class << self
     attr_reader :all
-  end
-
-  @all ||= $company_cache.map do |company|
-    Company.new(company)
   end
 
   def self.attribute_list(attr)
@@ -24,6 +23,10 @@ class CompanySet
 
   def self.financial_metric_list
     self.attribute_list(:financial_metric)
+  end
+
+  @all ||= AMEE::CDP.get_company_data.map do |company|
+    Company.new(company)
   end
 
   NORMALIZED_ATTRIBUTES = [ 
