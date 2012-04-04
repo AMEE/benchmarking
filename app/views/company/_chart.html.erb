@@ -1,5 +1,6 @@
 <% if @chart %>
-  <%= render_chart(@chart,'chart') %>
+  <% chart = column_chart(@company_set) %>
+  <%= render_chart(chart,'chart') %>
 <% else %>
   <%= image_tag "AMEE-Logo2011-LINE_Green.png" %>
 <% end %>

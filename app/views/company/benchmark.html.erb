@@ -4,7 +4,7 @@
 </div>
 <div id="benchmark-wrapper" class="content_pane">
   <div id="benchmark-table-wrapper">
-    <% if @items %>
+    <% if @company_set.selected %>
       <%= render :partial => 'company_table' %>
     <% else %>
       <%= image_tag 'AMEE-bug-ref_125x125.png', :alt => 'AMEE' %>

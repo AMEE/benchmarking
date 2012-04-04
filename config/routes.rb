@@ -6,10 +6,9 @@ BenchmarkingDemo::Application.routes.draw do
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
-  match "company/update" => 'company#update', :as => 'update'
+  match "update" => 'company#update', :as => 'update'
   match "benchmark" => 'company#benchmark', :as => 'benchmark'
   match "browse" => 'company#browse', :as => 'browse'
-  match "auto_complete_search" => "company#refresh_names", :as => 'auto_complete'
   root :to => redirect('/browse')
 
   # Sample of named route:

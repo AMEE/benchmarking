@@ -7,13 +7,13 @@
       <th class="country">Country</th>
       <th class="sector">Sector</th>
       <th class="scope-1-emissions">Scope 1 (t)</th>
-      <% if @grid_normalized %>
+      <% if @company_set.grid_normalized? %>
         <th class="scope-2-emissions">Scope 2 electricity only (t)</th>
       <% else %>
         <th class="scope-2-emissions">Scope 2 (t)</th>
       <% end %>
       <th class="scope-1-energy">Scope 1 (MWh)</th>
-      <% if @grid_normalized %>
+      <% if @company_set.grid_normalized? %>
         <th class="scope-2-energy">Scope 2 electricity only (MWh)</th>
       <% else %>
         <th class="scope-2-energy">Scope 2 (MWh)</th>
@@ -24,27 +24,27 @@
     </tr>
   </thead>
   <tbody>
-    <% if @items.empty? %>
+    <% if @company_set.selected.empty? %>
       <%= render :partial => 'blank_row' %>
     <% else %>
-      <% @items.each do |item| %>
-        <tr id="<%= item['company']['value'].downcase.gsub(" ","-") %>">
-          <td class="text company"><%= item['company']['value'] %></td>
-          <td class="text country"><%= item['country']['value'] %></td>
-          <td class="text sector"><%= item['sector']['value'] %></td>
-          <td class="number scope-1-emissions"><%= item['massScopeOneCO2e']['value'].to_s %></td>
-          <td class="number scope-2-emissions"><%= item['massScopeTwoCO2e']['value'].to_s %></td>
-          <td class="number scope-1-energy"><%= item['energyScopeOne']['value'].to_s %></td>
-          <% if @grid_normalized && item['energyScopeTwoElectricity'] %>
-            <td class="number scope-2-energy"><%= item['energyScopeTwoElectricity']['value'].to_s %></td>
+      <% @company_set.selected.each do |company| %>
+        <tr id="<%= company.name.downcase.gsub(" ","-") %>">
+          <td class="text company"><%= company.name %></td>
+          <td class="text country"><%= company.country %></td>
+          <td class="text sector"><%= company.sector %></td>
+          <td class="number scope-1-emissions"><%= company.mass_scope_one_co2e.to_s %></td>
+          <td class="number scope-2-emissions"><%= company.mass_scope_two_co2e.to_s %></td>
+          <td class="number scope-1-energy"><%= company.energy_scope_one.to_s %></td>
+          <% if @company_set.grid_normalized? && company.energy_scope_two_electricity %>
+            <td class="number scope-2-energy"><%= company.energy_scope_two_electricity.to_s %></td>
           <% else %>
-            <td class="number scope-2-energy"><%= item['energyScopeTwoTotal']['value'].to_s %></td>
+            <td class="number scope-2-energy"><%= company.energy_scope_two_total.to_s %></td>
           <% end %>
-          <td class="text metric"><%= item['financialMetric']['value'] %></td>
-          <% if item['massCO2ePerUSDFinancialMetric']['value'].blank? %>
-            <% value = item['massCO2ePerUSDFinancialMetric']['value'] %>
+          <td class="text metric"><%= company.financial_metric %></td>
+          <% if company.mass_co2e_per_usd_financial_metric.blank? %>
+            <% value = company.mass_co2e_per_usd_financial_metric %>
           <% else %>
-            <% value  = "%f" % item['massCO2ePerUSDFinancialMetric']['value'] %>
+            <% value  = "%f" % company.mass_co2e_per_usd_financial_metric %>
           <% end %>
           <td class="number intensity"><%= value %></td>
           <td class="dummy"></td>

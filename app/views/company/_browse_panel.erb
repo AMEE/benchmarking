@@ -4,13 +4,13 @@
       <td>Filter by:</td>
     </tr>
     <tr>
-      <td>Sector:</td><td> <%= select_tag 'sector', options_for_select(@sector_list, session[:settings][:sector] || "All") %></td>
+      <td>Sector:</td><td> <%= select_tag 'sector', options_for_select(CompanySet.sector_list, @company_set.sector || "All") %></td>
     </tr>
     <tr>
-      <td>Country:</td><td> <%= select_tag 'country', options_for_select(@country_list, session[:settings][:country] || "All") %></td>
+      <td>Country:</td><td> <%= select_tag 'country', options_for_select(CompanySet.country_list, @company_set.country || "All") %></td>
     </tr>
     <tr>
-      <td>Financial metric:</td><td> <%= select_tag 'financialMetric', options_for_select(@financial_metric_list, session[:settings][:financialMetric] || "All") %></td>
+      <td>Financial metric:</td><td> <%= select_tag 'financial_metric', options_for_select(CompanySet.financial_metric_list, @company_set.financial_metric || "All") %></td>
     </tr>
     <tr>
       <td>&nbsp;</td>
