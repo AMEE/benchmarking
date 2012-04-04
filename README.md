@@ -22,7 +22,7 @@ Copyright: Copyright (c) 2011 AMEE UK Ltd
 
 Homepage: http://github.com/AMEE/benchmarking
 
-# INSTALLATION
+## INSTALLATION
 
 Download the codebase and run 
 
@@ -40,13 +40,13 @@ OR
 
 Start the application!
 
-# REQUIREMENTS
+## REQUIREMENTS
 
  * Ruby 1.8.7
  * bundler
  * AMEE API key
 
-# USAGE
+## USAGE
 
 The application is divided into two parts defined by the /browse and /benchmark paths.
 
