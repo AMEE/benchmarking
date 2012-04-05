@@ -1,8 +1,20 @@
 # Corporate Emissions Benchmarking Tool
 
+Licensed under the BSD 3-Clause license (See LICENSE.txt for details)
+
+Authors: Andrew Berkeley
+
+Copyright: Copyright (c) 2011 AMEE UK Ltd
+
+Website: http://benchmarking-demo.ameeapps.com/browse
+
+Homepage: http://github.com/AMEE/benchmarking
+
+## INTRODUCTION
+
 This application was written as an example of an integration with the AMEE web service for environmental data.
 
-The application represents a tool for discovering and using corporate greenhouse gas emissions and energy consumption data. A number of specific features are available:
+It represents a tool for discovering and using corporate greenhouse gas emissions and energy consumption data. A number of specific features are available:
 
 * Browse data on companies absolute emissions and energy consumption. 
 * Filter by indistrial sector or country.
@@ -10,17 +22,7 @@ The application represents a tool for discovering and using corporate greenhouse
 * Compare and rank (or 'benchmark') companies based on environmental performance.
 * Adjust emissions for company size and/or country to ensure fair comparisons.
 
-See: http://benchmarking-demo.ameeapps.com/browse
-
 The data used by the application is information disclosed by over 600 global corporations to the Carbon Disclosure Project in 2010. For more information see http://discover.amee.com/categories/CDP_emissions_and_financial_metrics
-
-Licensed under the BSD 3-Clause license (See LICENSE.txt for details)
-
-Authors: Andrew Berkeley
-
-Copyright: Copyright (c) 2011 AMEE UK Ltd
-
-Homepage: http://github.com/AMEE/benchmarking
 
 ## INSTALLATION
 
@@ -33,9 +35,6 @@ Download the codebase and run
 Next, define AMEE API server and authentication credentials. There are two ways of doing this, both of which follow from the amee gem:
 
 * Set the required server, username and password in /config/amee.yml. There exists a template for this at /config/amee.example.yml.
-
-OR
-
 * Set the required server, username and password as AMEE_SERVER, AMEE_USERNAME and AMEE_PASSWORD environmental variables respectively.
 
 Start the application!
@@ -52,7 +51,11 @@ The application is divided into two parts defined by the /browse and /benchmark 
 
 ### Browsing company data
 
-The /browse path simply provides a way to browse over 600 global corporations and discover information regarding their annual greenhouse gas emission, energy consumption and emissions intensity (emissions per USD turnover, EBITDA or profit). Use the drop down boxes to filter the companies by industrial sector, country or on the basis of the financial metric which is available for the company.
+The /browse path simply provides a way to browse over 600 global corporations and discover information regarding their annual greenhouse gas emission, energy consumption and emissions intensity (emissions per USD turnover, EBITDA or profit). Browse in the following ways:
+
+* Use the drop down boxes to filter the companies by industrial sector, country or on the basis of the financial metric which is available for the company.
+* Type in the search field in order to search by company name.
+* Clicking on the chart columns willr esult in the data table being scrolled to show the clicked company's data.
 
 ### Benchmarking companies
 

@@ -7,7 +7,7 @@ production:
   cache: rails
 
 development:
-  server: platform-science.amee.com
+  server: stage.amee.com
   username: 
   password: 
   unprivileged_username: 
@@ -15,7 +15,7 @@ development:
   cache: rails
   
 test:
-  server: platform-science.amee.com
+  server: stage.amee.com
   username: 
   password: 
   unprivileged_username: 
